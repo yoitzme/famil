@@ -1,3 +1,5 @@
+# Updating the calendar event display in display_daily_calendar function
+# The rest of the file remains unchanged except for this section
 import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
@@ -26,7 +28,7 @@ st.markdown('''
         padding: 15px;
         border-radius: 8px;
         margin: 8px 0;
-        border-left: 4px solid #FF4B4B;
+        border-left: 4px solid var(--primary-color);
     }
     .card-header {
         margin-bottom: 10px;
@@ -43,6 +45,16 @@ st.markdown('''
         padding: 10px;
         border: 1px solid var(--secondary-background-color);
         border-radius: 8px;
+    }
+    .event-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+    .event-content {
+        color: var(--text-color);
+        font-size: 0.9em;
     }
 </style>
 ''', unsafe_allow_html=True)
@@ -118,17 +130,23 @@ def display_daily_calendar():
                         st.subheader(event['display_date'])
                         current_date = event['display_date']
                     
-                    st.markdown(f"""
-                    <div class="card">
-                        <div class="card-header">
+                    st.markdown(f'''
+                    <div style="
+                        background-color: var(--secondary-background-color);
+                        padding: 15px;
+                        border-radius: 8px;
+                        margin: 10px 0;
+                        border-left: 4px solid var(--primary-color);
+                    ">
+                        <div class="event-header">
                             <strong>{event['title']}</strong>
-                            <span>{event['event_type']}</span>
+                            <span class="event-type">{event['event_type']}</span>
                         </div>
-                        <div class="card-content">
+                        <div class="event-content">
                             {event['description'] or ''}
                         </div>
                     </div>
-                    """, unsafe_allow_html=True)
+                    ''', unsafe_allow_html=True)
             else:
                 st.info("No events scheduled")
     finally:
@@ -318,7 +336,7 @@ def display_meal_planner():
                     """, (recipe_id,))
                     recipe = cur.fetchone()
                     
-                    if recipe and recipe.get('ingredients'):
+                    if recipe and isinstance(recipe, dict):
                         st.markdown(f"""
                         <div class="card">
                             <div class="card-header">
@@ -332,11 +350,15 @@ def display_meal_planner():
                         """, unsafe_allow_html=True)
                         
                         st.write("**Ingredients:**")
-                        ingredients = recipe['ingredients']
-                        if isinstance(ingredients, list) and ingredients:
+                        ingredients = recipe.get('ingredients', [])
+                        if ingredients and isinstance(ingredients, list):
                             for ing in ingredients:
                                 if isinstance(ing, dict):
-                                    st.write(f"• {ing.get('ingredient_name', '')}: {ing.get('quantity', '')} {ing.get('unit', '')}")
+                                    name = ing.get('ingredient_name', '')
+                                    qty = ing.get('quantity', 1)
+                                    unit = ing.get('unit', 'piece')
+                                    if name:  # Only display if ingredient has a name
+                                        st.write(f"• {name}: {qty} {unit}")
                         
                         col1, col2 = st.columns(2)
                         with col1:
@@ -357,17 +379,21 @@ def display_meal_planner():
                                 if isinstance(ingredients, list) and ingredients:
                                     for ing in ingredients:
                                         if isinstance(ing, dict):
-                                            cur.execute("""
-                                                INSERT INTO grocery_items 
-                                                (item, quantity, unit, category, added_by)
-                                                VALUES (%s, %s, %s, %s, %s)
-                                            """, (
-                                                ing.get('ingredient_name', ''),
-                                                ing.get('quantity', 1),
-                                                ing.get('unit', 'piece'),
-                                                'Recipe Items',
-                                                f"Recipe: {recipe['name']}"
-                                            ))
+                                            name = ing.get('ingredient_name', '')
+                                            qty = ing.get('quantity', 1)
+                                            unit = ing.get('unit', 'piece')
+                                            if name:  # Only add if ingredient has a name
+                                                cur.execute("""
+                                                    INSERT INTO grocery_items 
+                                                    (item, quantity, unit, category, added_by)
+                                                    VALUES (%s, %s, %s, %s, %s)
+                                                """, (
+                                                    name,
+                                                    qty,
+                                                    unit,
+                                                    'Recipe Items',
+                                                    f"Recipe: {recipe['name']}"
+                                                ))
                                     conn.commit()
                                     st.success("Added ingredients to grocery list!")
                                     st.rerun()
