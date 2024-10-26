@@ -39,3 +39,14 @@ CREATE TABLE IF NOT EXISTS school_events (
     event_type VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Notifications table
+CREATE TABLE IF NOT EXISTS notifications (
+    notification_id SERIAL PRIMARY KEY,
+    user_id VARCHAR(100) NOT NULL,
+    message TEXT NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    read_status BOOLEAN DEFAULT FALSE,
+    priority INTEGER DEFAULT 1 -- 1: low, 2: medium, 3: high
+);
