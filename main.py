@@ -37,6 +37,13 @@ st.markdown('''
     .card-content {
         margin-top: 8px;
     }
+    .fixed-height-container {
+        height: 300px;
+        overflow-y: auto;
+        padding: 10px;
+        border: 1px solid var(--secondary-background-color);
+        border-radius: 8px;
+    }
 </style>
 ''', unsafe_allow_html=True)
 
@@ -80,39 +87,50 @@ def display_notifications():
     finally:
         conn.close()
 
-def display_calendar_events():
-    """Display calendar events in a card view."""
+def display_daily_calendar():
+    """Display today's events in a fixed-height container."""
     conn = get_db_connection()
     if not conn:
         return
     
     try:
         with conn.cursor(cursor_factory=RealDictCursor) as cur:
+            today = datetime.now().date()
             cur.execute("""
-                SELECT title, start_date, event_type
+                SELECT title, event_type, description,
+                       CASE 
+                           WHEN start_date = CURRENT_DATE THEN 'Today'
+                           WHEN start_date = CURRENT_DATE + INTERVAL '1 day' THEN 'Tomorrow'
+                           ELSE to_char(start_date, 'Day, Mon DD')
+                       END as display_date
                 FROM events
-                WHERE start_date >= CURRENT_DATE
-                ORDER BY start_date
-                LIMIT 5
+                WHERE start_date BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '7 days'
+                ORDER BY start_date, title
             """)
             events = cur.fetchall()
             
-            with st.expander("📅 Upcoming Events", expanded=True):
-                if events:
-                    for event in events:
-                        st.markdown(f"""
-                        <div class="card">
-                            <div class="card-header">
-                                <strong>{event['title']}</strong>
-                                <span>{format_date(str(event['start_date']))}</span>
-                            </div>
-                            <div class="card-content">
-                                Type: {event['event_type']}
-                            </div>
+            if events:
+                current_date = None
+                for event in events:
+                    if event['display_date'] != current_date:
+                        if current_date:
+                            st.markdown("<hr>", unsafe_allow_html=True)
+                        st.subheader(event['display_date'])
+                        current_date = event['display_date']
+                    
+                    st.markdown(f"""
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>{event['title']}</strong>
+                            <span>{event['event_type']}</span>
                         </div>
-                        """, unsafe_allow_html=True)
-                else:
-                    st.info("No upcoming events")
+                        <div class="card-content">
+                            {event['description'] or ''}
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+            else:
+                st.info("No events scheduled")
     finally:
         conn.close()
 
@@ -160,10 +178,11 @@ def display_chores():
                                         </div>
                                         """, unsafe_allow_html=True)
                                     with col2:
-                                        st.write(f"Points: {chore['points']}")
+                                        st.write(f"Points: {chore.get('points', 10)}")  # Default to 10 if points not set
                                     with col3:
                                         if not chore['completed']:
                                             if st.button("✓", key=f"complete_{chore['id']}"):
+                                                points = chore.get('points', 10)
                                                 cur.execute("""
                                                     UPDATE chores
                                                     SET completed = TRUE
@@ -176,7 +195,7 @@ def display_chores():
                                                     VALUES (%s, %s)
                                                     ON CONFLICT (user_name)
                                                     DO UPDATE SET points = points_balance.points + %s
-                                                """, (person, chore['points'], chore['points']))
+                                                """, (person, points, points))
                                                 
                                                 conn.commit()
                                                 st.rerun()
@@ -289,7 +308,7 @@ def display_meal_planner():
                     selected_recipe = st.selectbox("Select Recipe", list(recipe_options.keys()))
                     recipe_id = recipe_options[selected_recipe]
                     
-                    # Display recipe details
+                    # Display recipe details with improved error handling
                     cur.execute("""
                         SELECT r.*, array_agg(ri.*) as ingredients
                         FROM recipes r
@@ -299,7 +318,7 @@ def display_meal_planner():
                     """, (recipe_id,))
                     recipe = cur.fetchone()
                     
-                    if recipe and 'ingredients' in recipe:
+                    if recipe and recipe.get('ingredients'):
                         st.markdown(f"""
                         <div class="card">
                             <div class="card-header">
@@ -314,9 +333,10 @@ def display_meal_planner():
                         
                         st.write("**Ingredients:**")
                         ingredients = recipe['ingredients']
-                        if ingredients and isinstance(ingredients[0], dict):
+                        if isinstance(ingredients, list) and ingredients:
                             for ing in ingredients:
-                                st.write(f"• {ing.get('ingredient_name')}: {ing.get('quantity')} {ing.get('unit')}")
+                                if isinstance(ing, dict):
+                                    st.write(f"• {ing.get('ingredient_name', '')}: {ing.get('quantity', '')} {ing.get('unit', '')}")
                         
                         col1, col2 = st.columns(2)
                         with col1:
@@ -334,23 +354,23 @@ def display_meal_planner():
                                 st.rerun()
                             
                             if st.button("Add Ingredients to List"):
-                                # Add recipe ingredients to grocery list
-                                for ing in ingredients:
-                                    if isinstance(ing, dict):
-                                        cur.execute("""
-                                            INSERT INTO grocery_items 
-                                            (item, quantity, unit, category, added_by)
-                                            VALUES (%s, %s, %s, %s, %s)
-                                        """, (
-                                            ing.get('ingredient_name'),
-                                            ing.get('quantity'),
-                                            ing.get('unit', 'piece'),
-                                            'Recipe Items',
-                                            f"Recipe: {recipe['name']}"
-                                        ))
-                                conn.commit()
-                                st.success("Added ingredients to grocery list!")
-                                st.rerun()
+                                if isinstance(ingredients, list) and ingredients:
+                                    for ing in ingredients:
+                                        if isinstance(ing, dict):
+                                            cur.execute("""
+                                                INSERT INTO grocery_items 
+                                                (item, quantity, unit, category, added_by)
+                                                VALUES (%s, %s, %s, %s, %s)
+                                            """, (
+                                                ing.get('ingredient_name', ''),
+                                                ing.get('quantity', 1),
+                                                ing.get('unit', 'piece'),
+                                                'Recipe Items',
+                                                f"Recipe: {recipe['name']}"
+                                            ))
+                                    conn.commit()
+                                    st.success("Added ingredients to grocery list!")
+                                    st.rerun()
                 else:
                     st.info("No recipes available. Add some recipes to get started!")
     finally:
@@ -366,38 +386,21 @@ def main():
     # Display notifications
     display_notifications()
     
-    # Main content tabs
-    tab1, tab2, tab3, tab4 = st.tabs([
-        "Home/Calendar",
-        "Chores",
-        "Grocery & Meal Planning",
-        "School Events"
-    ])
+    # Calendar section
+    st.subheader("Today's Schedule")
+    with st.container():
+        calendar_container = st.empty()
+        with calendar_container:
+            display_daily_calendar()
     
-    with tab1:
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            display_calendar_events()
-        with col2:
-            # Add other home widgets
-            pass
-        with col3:
-            # Add more home widgets
-            pass
-    
-    with tab2:
+    # Quick action sections below
+    col1, col2, col3 = st.columns(3)
+    with col1:
         display_chores()
-    
-    with tab3:
-        col1, col2 = st.columns(2)
-        with col1:
-            display_grocery_list()
-        with col2:
-            display_meal_planner()
-    
-    with tab4:
-        # School events section
-        st.info("School events section will be implemented next")
+    with col2:
+        display_grocery_list()
+    with col3:
+        display_meal_planner()
 
 if __name__ == "__main__":
     main()
