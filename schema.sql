@@ -9,14 +9,33 @@ CREATE TABLE IF NOT EXISTS events (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Chores table
+-- Chores table with points
 CREATE TABLE IF NOT EXISTS chores (
     id SERIAL PRIMARY KEY,
     task VARCHAR(255) NOT NULL,
     assigned_to VARCHAR(100),
     due_date DATE,
     completed BOOLEAN DEFAULT FALSE,
+    points INTEGER DEFAULT 10,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Rewards table
+CREATE TABLE IF NOT EXISTS rewards (
+    reward_id SERIAL PRIMARY KEY,
+    reward_name VARCHAR(255) NOT NULL,
+    points_required INTEGER NOT NULL,
+    description TEXT,
+    claimed_by VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Points balance table
+CREATE TABLE IF NOT EXISTS points_balance (
+    id SERIAL PRIMARY KEY,
+    user_name VARCHAR(100) NOT NULL UNIQUE,
+    points INTEGER DEFAULT 0,
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Grocery items table
@@ -24,6 +43,7 @@ CREATE TABLE IF NOT EXISTS grocery_items (
     id SERIAL PRIMARY KEY,
     item VARCHAR(255) NOT NULL,
     quantity INTEGER DEFAULT 1,
+    unit VARCHAR(50),
     category VARCHAR(100),
     added_by VARCHAR(100),
     purchased BOOLEAN DEFAULT FALSE,

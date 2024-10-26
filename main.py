@@ -2,12 +2,13 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
 from utils.database import init_db, get_db_connection
-from utils.helpers import configure_page
+from utils.helpers import configure_page, format_date
 from utils.notifications import (
     get_notifications, mark_notification_as_read, 
     get_unread_count, check_and_create_notifications,
     get_notification_color, get_notification_sound
 )
+from psycopg2.extras import RealDictCursor
 
 # Configure the page
 configure_page()
@@ -20,20 +21,18 @@ st.markdown('''
         border-radius: 5px;
         padding: 10px 15px;
     }
-    .nav-link {
-        color: #1F2937;
-        text-decoration: none;
+    .nav-item {
         padding: 8px 16px;
         border-radius: 5px;
         margin: 0 5px;
         transition: background-color 0.3s;
     }
-    .nav-link:hover {
+    .nav-item:hover {
         background-color: #F3F4F6;
     }
-    .nav-link.active {
+    .nav-item.active {
         background-color: #FF4B4B;
-        color: white;
+        color: white !important;
     }
     .quick-action-card {
         background-color: white;
@@ -43,43 +42,73 @@ st.markdown('''
         border-left: 4px solid #FF4B4B;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .quick-action-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-    .quick-action-header h3 {
-        margin: 0;
-        color: #1F2937;
-    }
-    .quick-action-icon {
-        font-size: 1.5em;
-        margin-right: 10px;
-        color: #FF4B4B;
-    }
 </style>
 ''', unsafe_allow_html=True)
 
 def display_navigation():
-    """Display top navigation bar."""
-    st.markdown('''
-    <div style="
-        display: flex;
-        justify-content: center;
-        padding: 10px;
-        background-color: white;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    ">
-        <a href="/" class="nav-link active">🏠 Home</a>
-        <a href="/calendar" class="nav-link">📅 Calendar</a>
-        <a href="/chores" class="nav-link">✅ Chores</a>
-        <a href="/grocery_list" class="nav-link">🛒 Grocery</a>
-        <a href="/school_events" class="nav-link">🏫 School</a>
-        <a href="/meal_planner" class="nav-link">🍽️ Meals</a>
-    </div>
-    ''', unsafe_allow_html=True)
+    """Display top navigation using Streamlit components."""
+    st.markdown("### Navigation")
+    cols = st.columns(6)
+    
+    # Create navigation items using Streamlit components
+    with cols[0]:
+        if st.button("🏠 Home", use_container_width=True):
+            st.switch_page("main.py")
+    with cols[1]:
+        if st.button("📅 Calendar", use_container_width=True):
+            st.switch_page("pages/01_calendar.py")
+    with cols[2]:
+        if st.button("✅ Chores", use_container_width=True):
+            st.switch_page("pages/02_chores.py")
+    with cols[3]:
+        if st.button("🛒 Grocery", use_container_width=True):
+            st.switch_page("pages/03_grocery_list.py")
+    with cols[4]:
+        if st.button("🏫 School", use_container_width=True):
+            st.switch_page("pages/04_school_events.py")
+    with cols[5]:
+        if st.button("🍽️ Meals", use_container_width=True):
+            st.switch_page("pages/05_meal_planner.py")
+
+def display_notifications():
+    """Display notifications in header."""
+    conn = get_db_connection()
+    if not conn:
+        return
+    
+    # Check for new notifications
+    check_and_create_notifications(conn)
+    
+    # Get unread notifications
+    unread_count = get_unread_count(conn, "family")
+    
+    # Create notifications dropdown
+    with st.expander(f"🔔 Notifications ({unread_count} unread)"):
+        notifications = get_notifications(conn, "family", limit=10)
+        if not notifications:
+            st.info("No notifications")
+        else:
+            for notif in notifications:
+                col1, col2 = st.columns([3, 0.5])
+                with col1:
+                    st.markdown(f"""
+                    <div style="
+                        background-color: {get_notification_color(notif['priority'])};
+                        padding: 10px;
+                        border-radius: 5px;
+                        margin: 5px 0;
+                        opacity: {'0.7' if notif['read_status'] else '1'};
+                    ">
+                        {get_notification_sound(notif['priority'])} {notif['message']}
+                        <br>
+                        <small>{notif['created_at'].strftime('%H:%M')}</small>
+                    </div>
+                    """, unsafe_allow_html=True)
+                with col2:
+                    if not notif['read_status']:
+                        if st.button("✓", key=f"mark_read_{notif['id']}"):
+                            mark_notification_as_read(conn, notif['id'])
+                            st.rerun()
 
 def display_calendar_preview():
     """Display upcoming events preview."""
@@ -99,8 +128,7 @@ def display_calendar_preview():
                 st.markdown('''
                 <div class="quick-action-card">
                     <div class="quick-action-header">
-                        <span class="quick-action-icon">📅</span>
-                        <h3>Upcoming Events</h3>
+                        <h3>📅 Upcoming Events</h3>
                     </div>
                 </div>
                 ''', unsafe_allow_html=True)
@@ -117,76 +145,36 @@ def display_calendar_preview():
         finally:
             conn.close()
 
-def display_active_chores():
-    """Display active chores list."""
+def display_points_summary():
+    """Display family points summary."""
     conn = get_db_connection()
     if conn:
         try:
             with conn.cursor(cursor_factory=RealDictCursor) as cur:
                 cur.execute("""
-                    SELECT task, assigned_to, due_date
-                    FROM chores
-                    WHERE completed = FALSE
-                    ORDER BY due_date
-                    LIMIT 5
+                    SELECT user_name, points 
+                    FROM points_balance 
+                    ORDER BY points DESC
                 """)
-                chores = cur.fetchall()
+                points = cur.fetchall()
                 
                 st.markdown('''
                 <div class="quick-action-card">
                     <div class="quick-action-header">
-                        <span class="quick-action-icon">✅</span>
-                        <h3>Active Chores</h3>
+                        <h3>🌟 Family Points</h3>
                     </div>
                 </div>
                 ''', unsafe_allow_html=True)
                 
-                if chores:
-                    for chore in chores:
+                if points:
+                    for user in points:
                         st.markdown(f"""
                         <div style="padding: 5px 10px;">
-                            • {chore['task']} - {chore['assigned_to']} 
-                            (Due: {format_date(str(chore['due_date']))})
+                            • {user['user_name']}: {user['points']} points
                         </div>
                         """, unsafe_allow_html=True)
                 else:
-                    st.info("No active chores")
-        finally:
-            conn.close()
-
-def display_grocery_preview():
-    """Display grocery list preview."""
-    conn = get_db_connection()
-    if conn:
-        try:
-            with conn.cursor(cursor_factory=RealDictCursor) as cur:
-                cur.execute("""
-                    SELECT item, quantity
-                    FROM grocery_items
-                    WHERE purchased = FALSE
-                    ORDER BY created_at DESC
-                    LIMIT 5
-                """)
-                items = cur.fetchall()
-                
-                st.markdown('''
-                <div class="quick-action-card">
-                    <div class="quick-action-header">
-                        <span class="quick-action-icon">🛒</span>
-                        <h3>Shopping List</h3>
-                    </div>
-                </div>
-                ''', unsafe_allow_html=True)
-                
-                if items:
-                    for item in items:
-                        st.markdown(f"""
-                        <div style="padding: 5px 10px;">
-                            • {item['item']} (x{item['quantity']})
-                        </div>
-                        """, unsafe_allow_html=True)
-                else:
-                    st.info("Shopping list is empty")
+                    st.info("No points earned yet")
         finally:
             conn.close()
 
@@ -194,19 +182,17 @@ def main():
     # Initialize database
     init_db()
     
-    # Display navigation at the top
+    # Display navigation and notifications
     display_navigation()
-    
-    # Display notifications
     display_notifications()
     
-    # Hero Section (more compact)
+    # Hero Section
     st.markdown('''
     <div style="
         background-color: #f8f9fa;
         padding: 1.5rem;
         border-radius: 10px;
-        margin-bottom: 1.5rem;
+        margin: 1rem 0;
         text-align: center;
     ">
         <h1>🏠 Family Organization System</h1>
@@ -214,15 +200,23 @@ def main():
     </div>
     ''', unsafe_allow_html=True)
     
-    # Display quick action sections in columns
+    # Quick action sections
     col1, col2 = st.columns(2)
-    
     with col1:
         display_calendar_preview()
-        display_active_chores()
+        display_points_summary()
     
     with col2:
-        display_grocery_preview()
+        # Sample data and settings in dropdown
+        with st.expander("⚙️ Settings & Sample Data"):
+            if st.button("Add Sample Calendar Events"):
+                st.session_state['add_sample_calendar'] = True
+            if st.button("Add Sample Chores"):
+                st.session_state['add_sample_chores'] = True
+            if st.button("Add Sample Groceries"):
+                st.session_state['add_sample_groceries'] = True
+            if st.button("Clear All Sample Data"):
+                st.session_state['clear_sample_data'] = True
 
 if __name__ == "__main__":
     main()
