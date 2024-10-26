@@ -75,10 +75,13 @@ def get_unread_count(conn, user_id: str) -> int:
 
 def check_and_create_notifications(conn):
     """Check for events and create notifications if needed."""
-    tomorrow = datetime.now().date() + timedelta(days=1)
+    today = datetime.now().date()
+    tomorrow = today + timedelta(days=1)
+    next_week = today + timedelta(days=7)
     
     # Check calendar events
     with conn.cursor() as cur:
+        # Tomorrow's events
         cur.execute("""
             SELECT title, start_date 
             FROM events 
@@ -89,9 +92,23 @@ def check_and_create_notifications(conn):
         for event in events:
             message = f"Reminder: '{event[0]}' is tomorrow"
             create_notification(conn, "family", message, "event", priority=2)
+        
+        # Next week's events
+        cur.execute("""
+            SELECT title, start_date 
+            FROM events 
+            WHERE start_date BETWEEN %s AND %s
+        """, (tomorrow + timedelta(days=1), next_week))
+        upcoming_events = cur.fetchall()
+        
+        for event in upcoming_events:
+            days_until = (event[1] - today).days
+            message = f"Upcoming: '{event[0]}' in {days_until} days"
+            create_notification(conn, "family", message, "event", priority=1)
     
     # Check due chores
     with conn.cursor() as cur:
+        # Tomorrow's chores
         cur.execute("""
             SELECT task, assigned_to 
             FROM chores 
@@ -102,9 +119,23 @@ def check_and_create_notifications(conn):
         for chore in chores:
             message = f"Chore due tomorrow: {chore[0]} (Assigned to: {chore[1]})"
             create_notification(conn, chore[1].lower(), message, "chore", priority=2)
+        
+        # Overdue chores
+        cur.execute("""
+            SELECT task, assigned_to, due_date
+            FROM chores 
+            WHERE due_date < %s AND completed = FALSE
+        """, (today,))
+        overdue_chores = cur.fetchall()
+        
+        for chore in overdue_chores:
+            days_overdue = (today - chore[2]).days
+            message = f"OVERDUE: {chore[0]} was due {days_overdue} days ago (Assigned to: {chore[1]})"
+            create_notification(conn, chore[1].lower(), message, "chore", priority=3)
     
     # Check school events
     with conn.cursor() as cur:
+        # Tomorrow's events
         cur.execute("""
             SELECT title
             FROM school_events 
@@ -115,6 +146,19 @@ def check_and_create_notifications(conn):
         for event in school_events:
             message = f"School event tomorrow: {event[0]}"
             create_notification(conn, "family", message, "school", priority=3)
+        
+        # Upcoming events
+        cur.execute("""
+            SELECT title, event_date
+            FROM school_events 
+            WHERE event_date BETWEEN %s AND %s
+        """, (tomorrow + timedelta(days=1), next_week))
+        upcoming_school_events = cur.fetchall()
+        
+        for event in upcoming_school_events:
+            days_until = (event[1] - today).days
+            message = f"Upcoming school event: {event[0]} in {days_until} days"
+            create_notification(conn, "family", message, "school", priority=2)
 
 def get_notification_color(priority: int) -> str:
     """Get color based on notification priority."""
@@ -124,3 +168,12 @@ def get_notification_color(priority: int) -> str:
         3: "#FFB6C1",  # Light red - high priority
     }
     return colors.get(priority, "#FFFFFF")
+
+def get_notification_sound(priority: int) -> str:
+    """Get notification sound based on priority."""
+    sounds = {
+        1: "🔔",  # Regular bell
+        2: "⚠️",  # Warning
+        3: "🚨",  # Emergency
+    }
+    return sounds.get(priority, "🔔")
