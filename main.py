@@ -12,6 +12,37 @@ from utils.notifications import (
 # Configure the page
 configure_page()
 
+# Add custom styles
+st.markdown('''
+<style>
+    .stButton button {
+        width: 100%;
+        border-radius: 5px;
+        padding: 10px 15px;
+    }
+    .category-header {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+    }
+    .item-card {
+        background-color: white;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 5px 0;
+        border-left: 4px solid #FF4B4B;
+    }
+    .notification-badge {
+        background-color: #FF4B4B;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-size: 12px;
+    }
+</style>
+''', unsafe_allow_html=True)
+
 def display_notifications():
     """Display notifications dropdown."""
     conn = get_db_connection()

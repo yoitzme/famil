@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from utils.database import get_db_connection
 from utils.helpers import configure_page
+from psycopg2.extras import RealDictCursor
 
 configure_page()
 
@@ -33,6 +34,7 @@ def add_sample_groceries():
                         """, item)
                     conn.commit()
                     st.success("Sample grocery items added successfully!")
+                    st.rerun()
         except Exception as e:
             st.error(f"Error adding sample items: {type(e).__name__}")
         finally:
@@ -45,86 +47,106 @@ def main():
     if st.sidebar.button("Add Sample Groceries"):
         add_sample_groceries()
     
-    # Add new item form
-    with st.expander("Add New Item"):
-        with st.form("new_item"):
+    # Add new items form with multiple item support
+    with st.expander("Add New Items"):
+        with st.form("new_items"):
+            items_input = st.text_area(
+                "Add Multiple Items (one per line)",
+                placeholder="Milk\nBread\nEggs"
+            )
             col1, col2 = st.columns(2)
             with col1:
-                item = st.text_input("Item Name")
-                quantity = st.number_input("Quantity", min_value=1, value=1)
-            with col2:
                 category = st.selectbox("Category", 
                     ["Produce", "Dairy", "Meat", "Pantry", "Bakery", 
                      "Breakfast", "Snacks", "Beverages"])
+            with col2:
                 added_by = st.selectbox("Added By", 
                     ["Mom", "Dad", "Emma", "James", "Sarah"])
             
-            if st.form_submit_button("Add Item"):
-                conn = get_db_connection()
-                if conn and item:
-                    try:
-                        with conn.cursor() as cur:
-                            cur.execute("""
-                                INSERT INTO grocery_items 
-                                (item, quantity, category, added_by)
-                                VALUES (%s, %s, %s, %s)
-                            """, (item, quantity, category, added_by))
-                        conn.commit()
-                        st.success("Item added successfully!")
-                    except Exception as e:
-                        st.error(f"Error adding item: {type(e).__name__}")
-                    finally:
-                        conn.close()
+            if st.form_submit_button("Add Items"):
+                items_list = [item.strip() for item in items_input.split("\n") if item.strip()]
+                if items_list:
+                    conn = get_db_connection()
+                    if conn:
+                        try:
+                            with conn.cursor() as cur:
+                                for item in items_list:
+                                    cur.execute("""
+                                        INSERT INTO grocery_items 
+                                        (item, quantity, category, added_by)
+                                        VALUES (%s, %s, %s, %s)
+                                    """, (item, 1, category, added_by))
+                            conn.commit()
+                            st.success("Items added successfully!")
+                            st.rerun()
+                        except Exception as e:
+                            conn.rollback()
+                            st.error(f"Error adding items: {type(e).__name__}")
+                        finally:
+                            conn.close()
     
-    # Display grocery list
+    # Display grocery list with category grouping
     conn = get_db_connection()
     if conn:
         try:
-            with conn.cursor() as cur:
+            with conn.cursor(cursor_factory=RealDictCursor) as cur:
                 cur.execute("""
-                    SELECT * FROM grocery_items 
-                    ORDER BY category, purchased, item
+                    SELECT category, COUNT(*) as count
+                    FROM grocery_items
+                    WHERE purchased = FALSE
+                    GROUP BY category
+                    ORDER BY category
                 """)
-                items = cur.fetchall()
+                categories = cur.fetchall()
                 
-                # Filter options
-                st.sidebar.subheader("Filter Options")
-                filter_category = st.sidebar.multiselect(
-                    "Filter by Category",
-                    ["Produce", "Dairy", "Meat", "Pantry", "Bakery", 
-                     "Breakfast", "Snacks", "Beverages"]
-                )
-                show_purchased = st.sidebar.checkbox("Show Purchased Items")
-                
-                # Group items by category
-                st.subheader("Shopping List")
-                
-                current_category = None
-                for item in items:
-                    if (not filter_category or item[3] in filter_category) and \
-                       (show_purchased or not item[4]):
-                        
-                        if item[3] != current_category:
-                            st.markdown(f"### {item[3]}")
-                            current_category = item[3]
-                        
-                        col1, col2 = st.columns([3, 1])
+                for cat in categories:
+                    st.markdown(f'''
+                    <div class="category-header">
+                        <h3>{cat['category']}</h3>
+                        <div class="category-total">Total Items: {cat['count']}</div>
+                    </div>
+                    ''', unsafe_allow_html=True)
+                    
+                    cur.execute("""
+                        SELECT * FROM grocery_items 
+                        WHERE category = %s AND purchased = FALSE
+                        ORDER BY item
+                    """, (cat['category'],))
+                    items = cur.fetchall()
+                    
+                    for item in items:
+                        col1, col2, col3 = st.columns([3, 1, 1])
                         with col1:
-                            st.write(f"""
-                            **{item[1]}** (Qty: {item[2]})  
-                            Added by: {item[4]}
-                            """)
+                            st.markdown(f'''
+                            <div class="item-card">
+                                <strong>{item['item']}</strong><br>
+                                <small>Added by: {item['added_by']}</small>
+                            </div>
+                            ''', unsafe_allow_html=True)
                         with col2:
-                            if not item[4]:  # if not purchased
-                                if st.button("✅", key=f"buy_{item[0]}"):
-                                    with conn.cursor() as update_cur:
-                                        update_cur.execute("""
-                                            UPDATE grocery_items 
-                                            SET purchased = TRUE 
-                                            WHERE id = %s
-                                        """, (item[0],))
-                                    conn.commit()
-                                    st.rerun()
+                            quantity = st.number_input(
+                                "Qty", 
+                                min_value=1, 
+                                value=item['quantity'],
+                                key=f"qty_{item['id']}"
+                            )
+                            if quantity != item['quantity']:
+                                cur.execute("""
+                                    UPDATE grocery_items 
+                                    SET quantity = %s 
+                                    WHERE id = %s
+                                """, (quantity, item['id']))
+                                conn.commit()
+                                st.rerun()
+                        with col3:
+                            if st.button("✅", key=f"buy_{item['id']}"):
+                                cur.execute("""
+                                    UPDATE grocery_items 
+                                    SET purchased = TRUE 
+                                    WHERE id = %s
+                                """, (item['id'],))
+                                conn.commit()
+                                st.rerun()
         finally:
             conn.close()
 
