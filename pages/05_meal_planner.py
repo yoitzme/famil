@@ -80,7 +80,7 @@ def add_ingredients_to_grocery_list(recipe_id):
                 
                 # Add each ingredient to grocery list
                 for ingredient in ingredients:
-                    # Check if ingredient exists
+                    # Check if ingredient exists using correct column names
                     cur.execute(
                         "SELECT id, quantity FROM grocery_items WHERE item = %s AND purchased = FALSE",
                         (ingredient['ingredient_name'],)
@@ -127,6 +127,50 @@ def get_recipe_details(recipe_id):
         finally:
             conn.close()
     return None, None
+
+def display_weekly_meal_plan(conn, selected_date):
+    """Display the weekly meal plan with error handling."""
+    try:
+        with conn.cursor(cursor_factory=RealDictCursor) as cur:
+            start_of_week = selected_date - timedelta(days=selected_date.weekday())
+            end_of_week = start_of_week + timedelta(days=6)
+            
+            cur.execute("""
+                SELECT mp.date, mp.meal_type, r.name, r.description
+                FROM meal_plans mp
+                JOIN recipes r ON mp.recipe_id = r.recipe_id
+                WHERE mp.date BETWEEN %s AND %s
+                ORDER BY mp.date, 
+                    CASE mp.meal_type 
+                        WHEN 'Breakfast' THEN 1 
+                        WHEN 'Lunch' THEN 2 
+                        WHEN 'Dinner' THEN 3 
+                    END
+            """, (start_of_week, end_of_week))
+            
+            meal_plans = cur.fetchall()
+            current_date = None
+            
+            for plan in meal_plans:
+                if plan['date'] != current_date:
+                    st.write(f"### {format_date(str(plan['date']))}")
+                    current_date = plan['date']
+                
+                st.markdown(f"""
+                <div style="
+                    background-color: #f0f2f6;
+                    padding: 15px;
+                    border-radius: 8px;
+                    margin: 10px 0;
+                    border: 1px solid #e1e4e8;
+                ">
+                    <strong>{plan['meal_type']}:</strong> {plan['name']}
+                    <br>
+                    <small>{plan['description']}</small>
+                </div>
+                """, unsafe_allow_html=True)
+    except Exception as e:
+        st.error(f"Error displaying meal plan: {type(e).__name__}")
 
 def main():
     st.title("Meal Planner 🍽️")
@@ -205,12 +249,12 @@ def main():
     conn = get_db_connection()
     if conn:
         try:
-            with conn.cursor() as cur:
+            with conn.cursor(cursor_factory=RealDictCursor) as cur:
                 cur.execute("SELECT recipe_id, name FROM recipes ORDER BY name")
                 recipes = cur.fetchall()
                 
                 if recipes:
-                    recipe_options = {recipe[1]: recipe[0] for recipe in recipes}
+                    recipe_options = {recipe['name']: recipe['recipe_id'] for recipe in recipes}
                     selected_recipe = st.selectbox("Select Recipe", list(recipe_options.keys()))
                     recipe_id = recipe_options[selected_recipe]
                     
@@ -254,42 +298,8 @@ def main():
                 
                 # Display weekly meal plan
                 st.subheader("Weekly Meal Plan")
-                start_of_week = selected_date - timedelta(days=selected_date.weekday())
-                end_of_week = start_of_week + timedelta(days=6)
+                display_weekly_meal_plan(conn, selected_date)
                 
-                cur.execute("""
-                    SELECT mp.date, mp.meal_type, r.name, r.description
-                    FROM meal_plans mp
-                    JOIN recipes r ON mp.recipe_id = r.recipe_id
-                    WHERE mp.date BETWEEN %s AND %s
-                    ORDER BY mp.date, 
-                        CASE mp.meal_type 
-                            WHEN 'Breakfast' THEN 1 
-                            WHEN 'Lunch' THEN 2 
-                            WHEN 'Dinner' THEN 3 
-                        END
-                """, (start_of_week, end_of_week))
-                
-                meal_plans = cur.fetchall()
-                current_date = None
-                
-                for plan in meal_plans:
-                    if plan[0] != current_date:
-                        st.write(f"### {format_date(str(plan[0]))}")
-                        current_date = plan[0]
-                    
-                    st.markdown(f"""
-                    <div style="
-                        background-color: #f0f2f6;
-                        padding: 10px;
-                        border-radius: 5px;
-                        margin: 5px 0;
-                    ">
-                        <strong>{plan[1]}:</strong> {plan[2]}
-                        <br>
-                        <small>{plan[3]}</small>
-                    </div>
-                    """, unsafe_allow_html=True)
         except Exception as e:
             st.error(f"Error in meal planner: {type(e).__name__}")
         finally:

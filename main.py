@@ -101,25 +101,37 @@ def main():
     # Display notifications at the top
     display_notifications()
     
-    st.title("Family Organization System")
-    
-    # Welcome message
-    st.markdown("""
-    ## Welcome to Your Family Dashboard! 👋
-    
-    Navigate through the different sections using the sidebar:
-    - 📅 Calendar - Track family events and appointments
-    - ✅ Chores - Manage household tasks
-    - 🛒 Grocery List - Keep track of shopping needs
-    - 🏫 School Events - Stay updated with school activities
-    """)
+    # Hero Section
+    st.markdown('''
+    <div class="hero" style="
+        background-color: #f8f9fa;
+        padding: 2rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        text-align: center;
+    ">
+        <h1>🏠 Family Organization System</h1>
+        <p class="lead">Keep your family organized and connected!</p>
+    </div>
+    ''', unsafe_allow_html=True)
     
     # Quick Actions Section
     st.subheader("Quick Actions")
     col1, col2 = st.columns(2)
     
     with col1:
-        st.info("📋 Today's Tasks")
+        st.markdown('''
+        <div class="section" style="
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        ">
+            <h2>📋 Today's Tasks</h2>
+        </div>
+        ''', unsafe_allow_html=True)
+        
         conn = get_db_connection()
         if conn:
             try:
@@ -132,14 +144,25 @@ def main():
                     today_tasks = cur.fetchall()
                     if today_tasks:
                         for task in today_tasks:
-                            st.write(f"• {task[0]} ({task[1]})")
+                            st.markdown(f"• {task[0]} ({task[1]})")
                     else:
-                        st.write("No tasks due today")
+                        st.info("No tasks due today")
             finally:
                 conn.close()
         
     with col2:
-        st.info("🛒 Shopping List")
+        st.markdown('''
+        <div class="section" style="
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        ">
+            <h2>🛒 Shopping List</h2>
+        </div>
+        ''', unsafe_allow_html=True)
+        
         conn = get_db_connection()
         if conn:
             try:
@@ -153,11 +176,23 @@ def main():
                     shopping_items = cur.fetchall()
                     if shopping_items:
                         for item in shopping_items:
-                            st.write(f"• {item[0]} (x{item[1]})")
+                            st.markdown(f"• {item[0]} (x{item[1]})")
                     else:
-                        st.write("Shopping list is empty")
+                        st.info("Shopping list is empty")
             finally:
                 conn.close()
+                
+    # Navigation Help
+    st.markdown("""
+    ## Navigate Your Family Hub
+    
+    Use the sidebar to access:
+    - 📅 Calendar - Track family events and appointments
+    - ✅ Chores - Manage household tasks
+    - 🛒 Grocery List - Keep track of shopping needs
+    - 🏫 School Events - Stay updated with school activities
+    - 🍽️ Meal Planner - Plan your family meals
+    """)
 
 if __name__ == "__main__":
     main()
