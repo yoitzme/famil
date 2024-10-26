@@ -50,3 +50,33 @@ CREATE TABLE IF NOT EXISTS notifications (
     read_status BOOLEAN DEFAULT FALSE,
     priority INTEGER DEFAULT 1 -- 1: low, 2: medium, 3: high
 );
+
+-- Recipes table
+CREATE TABLE IF NOT EXISTS recipes (
+    recipe_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    servings INTEGER,
+    prep_time INTEGER, -- in minutes
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Recipe ingredients table
+CREATE TABLE IF NOT EXISTS recipe_ingredients (
+    ingredient_id SERIAL PRIMARY KEY,
+    recipe_id INTEGER REFERENCES recipes(recipe_id),
+    ingredient_name VARCHAR(255) NOT NULL,
+    quantity DECIMAL,
+    unit VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Meal plans table
+CREATE TABLE IF NOT EXISTS meal_plans (
+    plan_id SERIAL PRIMARY KEY,
+    date DATE NOT NULL,
+    meal_type VARCHAR(50) NOT NULL, -- breakfast, lunch, dinner
+    recipe_id INTEGER REFERENCES recipes(recipe_id),
+    notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
