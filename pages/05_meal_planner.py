@@ -38,11 +38,13 @@ def add_sample_recipes():
         try:
             with conn.cursor() as cur:
                 cur.execute("SELECT COUNT(*) FROM recipes")
-                if cur.fetchone()[0] == 0:
+                count = cur.fetchone()[0]
+                if count == 0:
                     for recipe in sample_recipes:
                         # Insert recipe
                         cur.execute("""
-                            INSERT INTO recipes (name, description, servings, prep_time)
+                            INSERT INTO recipes 
+                            (name, description, servings, prep_time)
                             VALUES (%s, %s, %s, %s)
                             RETURNING recipe_id
                         """, (recipe[0], recipe[1], recipe[2], recipe[3]))
@@ -68,7 +70,7 @@ def add_ingredients_to_grocery_list(recipe_id):
     conn = get_db_connection()
     if conn:
         try:
-            with conn.cursor() as cur:
+            with conn.cursor(cursor_factory=RealDictCursor) as cur:
                 # Get recipe ingredients
                 cur.execute(
                     "SELECT ingredient_name, quantity, unit FROM recipe_ingredients WHERE recipe_id = %s",
@@ -78,28 +80,25 @@ def add_ingredients_to_grocery_list(recipe_id):
                 
                 # Add each ingredient to grocery list
                 for ingredient in ingredients:
-                    # Check if ingredient already exists
+                    # Check if ingredient exists
                     cur.execute(
                         "SELECT id, quantity FROM grocery_items WHERE item = %s AND purchased = FALSE",
-                        (ingredient[0],)
+                        (ingredient['ingredient_name'],)
                     )
                     existing = cur.fetchone()
                     
                     if existing:
-                        # Update quantity
                         cur.execute(
                             "UPDATE grocery_items SET quantity = quantity + %s WHERE id = %s",
-                            (ingredient[1], existing[0])
+                            (ingredient['quantity'], existing['id'])
                         )
                     else:
-                        # Add new item
                         cur.execute(
                             "INSERT INTO grocery_items (item, quantity, unit, category, added_by) VALUES (%s, %s, %s, 'From Recipe', 'Meal Planner')",
-                            (ingredient[0], ingredient[1], ingredient[2])
+                            (ingredient['ingredient_name'], ingredient['quantity'], ingredient['unit'])
                         )
                 conn.commit()
                 st.success("Ingredients added to grocery list!")
-                
         except Exception as e:
             conn.rollback()
             st.error(f"Error adding ingredients: {type(e).__name__}")
@@ -146,7 +145,7 @@ def main():
                 description = st.text_area("Description")
             with col2:
                 prep_time = st.number_input("Prep Time (minutes)", min_value=5, value=30)
-                
+            
             # Dynamic ingredient inputs
             st.subheader("Ingredients")
             ingredients = []
@@ -231,13 +230,20 @@ def main():
                         if st.button("Add to Meal Plan"):
                             try:
                                 with conn.cursor() as cur:
+                                    # First, add to meal plans
                                     cur.execute("""
                                         INSERT INTO meal_plans 
                                         (date, meal_type, recipe_id)
                                         VALUES (%s, %s, %s)
                                     """, (selected_date, meal_type, recipe_id))
+                                    
+                                    # Then, add to events table
+                                    cur.execute(
+                                        "INSERT INTO events (title, description, start_date, end_date, event_type) VALUES (%s, %s, %s, %s, %s)",
+                                        (f"{meal_type}: {selected_recipe}", recipe['description'], selected_date, selected_date, 'Meal')
+                                    )
                                 conn.commit()
-                                st.success("Added to meal plan!")
+                                st.success("Added to meal plan and calendar!")
                             except Exception as e:
                                 conn.rollback()
                                 st.error(f"Error adding to meal plan: {type(e).__name__}")
@@ -248,8 +254,6 @@ def main():
                 
                 # Display weekly meal plan
                 st.subheader("Weekly Meal Plan")
-                if isinstance(selected_date, datetime):
-                    selected_date = selected_date.date()
                 start_of_week = selected_date - timedelta(days=selected_date.weekday())
                 end_of_week = start_of_week + timedelta(days=6)
                 
