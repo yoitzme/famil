@@ -38,8 +38,7 @@ def add_sample_recipes():
         try:
             with conn.cursor() as cur:
                 cur.execute("SELECT COUNT(*) FROM recipes")
-                count = cur.fetchone()[0]
-                if count == 0:
+                if cur.fetchone()[0] == 0:
                     for recipe in sample_recipes:
                         # Insert recipe
                         cur.execute("""
@@ -59,6 +58,7 @@ def add_sample_recipes():
                     conn.commit()
                     st.success("Sample recipes added successfully!")
         except Exception as e:
+            conn.rollback()
             st.error(f"Error adding sample recipes: {type(e).__name__}")
         finally:
             conn.close()
@@ -70,39 +70,38 @@ def add_ingredients_to_grocery_list(recipe_id):
         try:
             with conn.cursor() as cur:
                 # Get recipe ingredients
-                cur.execute("""
-                    SELECT ingredient_name, quantity, unit 
-                    FROM recipe_ingredients 
-                    WHERE recipe_id = %s
-                """, (recipe_id,))
+                cur.execute(
+                    "SELECT ingredient_name, quantity, unit FROM recipe_ingredients WHERE recipe_id = %s",
+                    (recipe_id,)
+                )
                 ingredients = cur.fetchall()
                 
                 # Add each ingredient to grocery list
                 for ingredient in ingredients:
                     # Check if ingredient already exists
-                    cur.execute("""
-                        SELECT id, quantity FROM grocery_items 
-                        WHERE item = %s AND purchased = FALSE
-                    """, (ingredient[0],))
+                    cur.execute(
+                        "SELECT id, quantity FROM grocery_items WHERE item = %s AND purchased = FALSE",
+                        (ingredient[0],)
+                    )
                     existing = cur.fetchone()
                     
                     if existing:
                         # Update quantity
-                        cur.execute("""
-                            UPDATE grocery_items 
-                            SET quantity = quantity + %s 
-                            WHERE id = %s
-                        """, (ingredient[1], existing[0]))
+                        cur.execute(
+                            "UPDATE grocery_items SET quantity = quantity + %s WHERE id = %s",
+                            (ingredient[1], existing[0])
+                        )
                     else:
                         # Add new item
-                        cur.execute("""
-                            INSERT INTO grocery_items 
-                            (item, quantity, unit, category, added_by)
-                            VALUES (%s, %s, %s, 'From Recipe', 'Meal Planner')
-                        """, (ingredient[0], ingredient[1], ingredient[2]))
+                        cur.execute(
+                            "INSERT INTO grocery_items (item, quantity, unit, category, added_by) VALUES (%s, %s, %s, 'From Recipe', 'Meal Planner')",
+                            (ingredient[0], ingredient[1], ingredient[2])
+                        )
                 conn.commit()
                 st.success("Ingredients added to grocery list!")
+                
         except Exception as e:
+            conn.rollback()
             st.error(f"Error adding ingredients: {type(e).__name__}")
         finally:
             conn.close()
@@ -114,19 +113,18 @@ def get_recipe_details(recipe_id):
         try:
             with conn.cursor(cursor_factory=RealDictCursor) as cur:
                 # Get recipe info
-                cur.execute("""
-                    SELECT * FROM recipes WHERE recipe_id = %s
-                """, (recipe_id,))
+                cur.execute("SELECT * FROM recipes WHERE recipe_id = %s", (recipe_id,))
                 recipe = cur.fetchone()
                 
-                # Get ingredients
-                cur.execute("""
-                    SELECT * FROM recipe_ingredients 
-                    WHERE recipe_id = %s
-                """, (recipe_id,))
-                ingredients = cur.fetchall()
-                
-                return recipe, ingredients
+                if recipe:
+                    # Get ingredients
+                    cur.execute("SELECT * FROM recipe_ingredients WHERE recipe_id = %s", (recipe_id,))
+                    ingredients = cur.fetchall()
+                    return recipe, ingredients
+                return None, None
+        except Exception as e:
+            st.error(f"Error getting recipe details: {type(e).__name__}")
+            return None, None
         finally:
             conn.close()
     return None, None
@@ -191,6 +189,7 @@ def main():
                                 conn.commit()
                                 st.success("Recipe added successfully!")
                         except Exception as e:
+                            conn.rollback()
                             st.error(f"Error adding recipe: {type(e).__name__}")
                         finally:
                             conn.close()
@@ -240,6 +239,7 @@ def main():
                                 conn.commit()
                                 st.success("Added to meal plan!")
                             except Exception as e:
+                                conn.rollback()
                                 st.error(f"Error adding to meal plan: {type(e).__name__}")
                     
                     with col2:
@@ -248,6 +248,8 @@ def main():
                 
                 # Display weekly meal plan
                 st.subheader("Weekly Meal Plan")
+                if isinstance(selected_date, datetime):
+                    selected_date = selected_date.date()
                 start_of_week = selected_date - timedelta(days=selected_date.weekday())
                 end_of_week = start_of_week + timedelta(days=6)
                 
@@ -284,6 +286,8 @@ def main():
                         <small>{plan[3]}</small>
                     </div>
                     """, unsafe_allow_html=True)
+        except Exception as e:
+            st.error(f"Error in meal planner: {type(e).__name__}")
         finally:
             conn.close()
 
