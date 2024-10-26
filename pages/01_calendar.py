@@ -3,6 +3,7 @@ import plotly.graph_objects as go
 from datetime import datetime, timedelta
 from utils.database import get_db_connection
 from utils.helpers import configure_page, format_date
+from psycopg2.extras import RealDictCursor
 
 configure_page()
 
@@ -51,6 +52,22 @@ def add_sample_calendar_events():
         finally:
             conn.close()
 
+def clear_all_sample_data():
+    """Clear all sample data from all tables."""
+    conn = get_db_connection()
+    if conn:
+        try:
+            with conn.cursor() as cur:
+                tables = ['events', 'chores', 'grocery_items', 'school_events', 'notifications']
+                for table in tables:
+                    cur.execute(f"DELETE FROM {table}")
+                conn.commit()
+                st.success("All sample data cleared successfully!")
+        except Exception as e:
+            st.error(f"Error clearing sample data: {type(e).__name__}")
+        finally:
+            conn.close()
+
 def create_calendar_view(events):
     """Create an interactive calendar view using Plotly."""
     fig = go.Figure()
@@ -94,6 +111,22 @@ def main():
     if st.sidebar.button("Add Sample Calendar Events"):
         add_sample_calendar_events()
     
+    # Clear all sample data button with confirmation
+    if st.sidebar.button("Clear All Sample Data"):
+        with st.sidebar:
+            st.warning("""
+            This will clear ALL sample data from:
+            - Calendar Events
+            - Chores
+            - Grocery Items
+            - School Events
+            - Notifications
+            
+            Are you sure?
+            """)
+            if st.button("Yes, Clear Everything"):
+                clear_all_sample_data()
+    
     # Add new event form
     with st.expander("Add New Event"):
         with st.form("new_event"):
@@ -129,7 +162,7 @@ def main():
     conn = get_db_connection()
     if conn:
         try:
-            with conn.cursor() as cur:
+            with conn.cursor(cursor_factory=RealDictCursor) as cur:
                 # Filter options
                 st.sidebar.subheader("Filter Options")
                 filter_type = st.sidebar.multiselect(
