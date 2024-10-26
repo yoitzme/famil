@@ -6,6 +6,51 @@ from utils.helpers import configure_page, format_date
 
 configure_page()
 
+def get_event_color(event_type):
+    """Return color based on event type."""
+    colors = {
+        "Family": "#FF9999",    # Light red
+        "School": "#99FF99",    # Light green
+        "Work": "#9999FF",      # Light blue
+        "Other": "#FFB366"      # Light orange
+    }
+    return colors.get(event_type, "#FFFFFF")
+
+def add_sample_calendar_events():
+    """Add sample calendar events to the database."""
+    sample_events = [
+        ("Emma's Birthday", "Birthday party at home", "2024-11-10", 
+         "2024-11-10", "Family"),
+        ("Doctor Appointment", "Annual checkup", "2024-11-15", 
+         "2024-11-15", "Family"),
+        ("School Meeting", "Parent council", "2024-11-20", 
+         "2024-11-20", "School"),
+        ("Work Presentation", "Quarterly review", "2024-11-25", 
+         "2024-11-25", "Work"),
+        ("Family Dinner", "Grandparents visiting", "2024-12-01", 
+         "2024-12-01", "Family"),
+    ]
+    
+    conn = get_db_connection()
+    if conn:
+        try:
+            with conn.cursor() as cur:
+                cur.execute("SELECT COUNT(*) FROM events")
+                count = cur.fetchone()[0]
+                if count == 0:
+                    for event in sample_events:
+                        cur.execute("""
+                            INSERT INTO events 
+                            (title, description, start_date, end_date, event_type)
+                            VALUES (%s, %s, %s, %s, %s)
+                        """, event)
+                    conn.commit()
+                    st.success("Sample calendar events added successfully!")
+        except Exception as e:
+            st.error(f"Error adding sample events: {type(e).__name__}")
+        finally:
+            conn.close()
+
 def create_calendar_view(events):
     """Create an interactive calendar view using Plotly."""
     fig = go.Figure()
@@ -17,14 +62,27 @@ def create_calendar_view(events):
             mode='markers+text',
             name=event['title'],
             text=[event['title']],
-            hoverinfo='text+x'
+            marker=dict(
+                color=get_event_color(event['event_type']),
+                size=15,
+                line=dict(color='black', width=1)
+            ),
+            hovertemplate=(
+                f"<b>{event['title']}</b><br>"
+                f"Date: {format_date(str(event['start_date']))}<br>"
+                f"Type: {event['event_type']}<br>"
+                f"Description: {event['description']}<br>"
+                "<extra></extra>"
+            )
         ))
     
     fig.update_layout(
         title='Family Calendar',
         xaxis_title='Date',
         yaxis_title='Events',
-        height=600
+        height=600,
+        showlegend=False,
+        hovermode='closest'
     )
     
     return fig
@@ -32,15 +90,22 @@ def create_calendar_view(events):
 def main():
     st.title("Family Calendar 📅")
     
+    # Add sample data button
+    if st.sidebar.button("Add Sample Calendar Events"):
+        add_sample_calendar_events()
+    
     # Add new event form
     with st.expander("Add New Event"):
         with st.form("new_event"):
-            title = st.text_input("Event Title")
-            description = st.text_area("Description")
-            start_date = st.date_input("Start Date")
-            end_date = st.date_input("End Date")
-            event_type = st.selectbox("Event Type", 
-                ["Family", "School", "Work", "Other"])
+            col1, col2 = st.columns(2)
+            with col1:
+                title = st.text_input("Event Title")
+                description = st.text_area("Description")
+            with col2:
+                start_date = st.date_input("Start Date")
+                end_date = st.date_input("End Date")
+                event_type = st.selectbox("Event Type", 
+                    ["Family", "School", "Work", "Other"])
             
             if st.form_submit_button("Add Event"):
                 conn = get_db_connection()
@@ -48,8 +113,8 @@ def main():
                     try:
                         with conn.cursor() as cur:
                             cur.execute("""
-                                INSERT INTO events (title, description, start_date, 
-                                end_date, event_type)
+                                INSERT INTO events 
+                                (title, description, start_date, end_date, event_type)
                                 VALUES (%s, %s, %s, %s, %s)
                             """, (title, description, start_date, end_date, 
                                  event_type))
@@ -65,23 +130,54 @@ def main():
     if conn:
         try:
             with conn.cursor() as cur:
+                # Filter options
+                st.sidebar.subheader("Filter Options")
+                filter_type = st.sidebar.multiselect(
+                    "Filter by Event Type",
+                    ["Family", "School", "Work", "Other"]
+                )
+                
+                # Get events
                 cur.execute("SELECT * FROM events ORDER BY start_date")
                 events = cur.fetchall()
                 
+                # Filter events
+                filtered_events = [
+                    event for event in events 
+                    if not filter_type or event['event_type'] in filter_type
+                ]
+                
                 # Create and display calendar
-                calendar = create_calendar_view(events)
+                calendar = create_calendar_view(filtered_events)
                 st.plotly_chart(calendar, use_container_width=True)
                 
                 # List view of upcoming events
                 st.subheader("Upcoming Events")
-                for event in events:
+                
+                # Group events by month
+                current_month = None
+                for event in filtered_events:
                     if event['start_date'] >= datetime.now().date():
-                        st.info(f"""
-                        **{event['title']}**  
-                        Date: {format_date(str(event['start_date']))}  
-                        Type: {event['event_type']}  
-                        Description: {event['description']}
-                        """)
+                        event_month = event['start_date'].strftime('%B %Y')
+                        
+                        if event_month != current_month:
+                            st.markdown(f"### {event_month}")
+                            current_month = event_month
+                        
+                        st.markdown(f"""
+                        <div style="
+                            background-color: {get_event_color(event['event_type'])};
+                            padding: 10px;
+                            border-radius: 5px;
+                            margin: 5px 0;
+                        ">
+                            <h4>{event['title']}</h4>
+                            <p><strong>Date:</strong> {format_date(str(event['start_date']))}</p>
+                            <p><strong>Type:</strong> {event['event_type']}</p>
+                            <p>{event['description']}</p>
+                        </div>
+                        """, unsafe_allow_html=True)
+                
         finally:
             conn.close()
 
