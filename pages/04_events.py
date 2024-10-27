@@ -24,19 +24,22 @@ def add_sample_events():
     if conn:
         try:
             with conn.cursor() as cur:
+                # Check if events already exist
                 cur.execute("SELECT COUNT(*) FROM events")
-                count = cur.fetchone()[0]
+                result = cur.fetchone()
+                count = result[0] if result else 0
+                
                 if count == 0:
                     for event in sample_events:
                         cur.execute("""
                             INSERT INTO events 
-                            (title, description, event_date, event_type)
+                            (title, description, start_date, event_type)
                             VALUES (%s, %s, %s, %s)
                         """, event)
                     conn.commit()
                     st.success("Sample events added successfully!")
         except Exception as e:
-            st.error(f"Error adding sample events: {type(e).__name__}")
+            st.error(f"Error adding sample events: {str(e)}")
         finally:
             conn.close()
 
@@ -63,26 +66,29 @@ def main():
         with st.form("new_event"):
             title = st.text_input("Event Title")
             description = st.text_area("Description")
-            event_date = st.date_input("Event Date")
+            start_date = st.date_input("Event Date")
             event_type = st.selectbox("Event Type", 
                 ["Conference", "Performance", "Academic", "Sports", "Other"])
             
             if st.form_submit_button("Add Event"):
-                conn = get_db_connection()
-                if conn and title:
-                    try:
-                        with conn.cursor() as cur:
-                            cur.execute("""
-                                INSERT INTO events 
-                                (title, description, event_date, event_type)
-                                VALUES (%s, %s, %s, %s)
-                            """, (title, description, event_date, event_type))
-                        conn.commit()
-                        st.success("Event added successfully!")
-                    except Exception as e:
-                        st.error(f"Error adding event: {type(e).__name__}")
-                    finally:
-                        conn.close()
+                if not title:
+                    st.error("Please enter an event title")
+                else:
+                    conn = get_db_connection()
+                    if conn:
+                        try:
+                            with conn.cursor() as cur:
+                                cur.execute("""
+                                    INSERT INTO events 
+                                    (title, description, start_date, event_type)
+                                    VALUES (%s, %s, %s, %s)
+                                """, (title, description, start_date, event_type))
+                            conn.commit()
+                            st.success("Event added successfully!")
+                        except Exception as e:
+                            st.error(f"Error adding event: {str(e)}")
+                        finally:
+                            conn.close()
     
     # Display events
     conn = get_db_connection()
@@ -90,8 +96,9 @@ def main():
         try:
             with conn.cursor() as cur:
                 cur.execute("""
-                    SELECT * FROM events 
-                    ORDER BY event_date
+                    SELECT title, description, start_date, event_type 
+                    FROM events 
+                    ORDER BY start_date
                 """)
                 events = cur.fetchall()
                 
@@ -107,20 +114,22 @@ def main():
                 
                 today = datetime.now().date()
                 for event in events:
-                    if not filter_type or event[4] in filter_type:
+                    if not filter_type or event[3] in filter_type:
                         st.markdown(f'''
                         <div class="card">
                             <div class="card-header">
-                                <strong>{event[1]}</strong>
-                                <span class="event-type">{event[4]}</span>
+                                <strong>{event[0]}</strong>
+                                <span class="event-type">{event[3]}</span>
                             </div>
                             <div class="card-content">
-                                <p>{format_date(str(event[3]))}</p>
-                                <p>{event[2]}</p>
+                                <p>{format_date(str(event[2]))}</p>
+                                <p>{event[1]}</p>
                             </div>
                         </div>
                         ''', unsafe_allow_html=True)
                         
+        except Exception as e:
+            st.error(f"Error displaying events: {str(e)}")
         finally:
             conn.close()
 
