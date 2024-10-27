@@ -38,12 +38,12 @@ CREATE TABLE IF NOT EXISTS points_balance (
     last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Grocery items table
+-- Grocery items table with unit column
 CREATE TABLE IF NOT EXISTS grocery_items (
     id SERIAL PRIMARY KEY,
     item VARCHAR(255) NOT NULL,
     quantity INTEGER DEFAULT 1,
-    unit VARCHAR(50),
+    unit VARCHAR(50) NOT NULL DEFAULT 'piece',
     category VARCHAR(100),
     added_by VARCHAR(100),
     purchased BOOLEAN DEFAULT FALSE,
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS notifications (
     type VARCHAR(50) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     read_status BOOLEAN DEFAULT FALSE,
-    priority INTEGER DEFAULT 1 -- 1: low, 2: medium, 3: high
+    priority INTEGER DEFAULT 1
 );
 
 -- Recipes table
@@ -77,7 +77,8 @@ CREATE TABLE IF NOT EXISTS recipes (
     name VARCHAR(255) NOT NULL,
     description TEXT,
     servings INTEGER,
-    prep_time INTEGER, -- in minutes
+    prep_time INTEGER,
+    instructions TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -95,7 +96,7 @@ CREATE TABLE IF NOT EXISTS recipe_ingredients (
 CREATE TABLE IF NOT EXISTS meal_plans (
     plan_id SERIAL PRIMARY KEY,
     date DATE NOT NULL,
-    meal_type VARCHAR(50) NOT NULL, -- breakfast, lunch, dinner
+    meal_type VARCHAR(50) NOT NULL,
     recipe_id INTEGER REFERENCES recipes(recipe_id),
     notes TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

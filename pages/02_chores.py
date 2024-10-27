@@ -85,7 +85,9 @@ def main():
                     "Filter by Person",
                     ["Emma", "James", "Sarah", "David"]
                 )
-                show_completed = st.sidebar.checkbox("Show Completed Tasks")
+                
+                # Show completed checkbox moved out of sidebar with default True
+                show_completed = st.checkbox("Show Completed Tasks", value=True)
                 
                 # Display chores in tabs by date
                 st.subheader("Tasks Overview")
