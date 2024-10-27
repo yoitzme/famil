@@ -8,11 +8,11 @@ from psycopg2.extras import RealDictCursor
 configure_page()
 
 # Rest of the imports and configuration...
-[Previous code from lines 1-367 remains the same]
+# Previous code from lines 1-367 remains the same
 
-                            with col3:
+with st.sidebar.container() as col3:
                                 st.write(item.get('unit', 'piece'))  # Default to 'piece' if unit is missing
-                            with col4:
+                        # Assuming 'col3' is defined earlier in the code not shown here.
                                 if st.button("✅", key=f"buy_{item['id']}"):
                                     cur.execute("""
                                         UPDATE grocery_items 
@@ -21,9 +21,9 @@ configure_page()
                                     """, (item['id'],))
                                     conn.commit()
                                     st.rerun()
-                    except Exception as e:
-                        st.error(f"Error managing grocery list: {str(e)}")
-                    finally:
-                        conn.close()
+    except Exception as e:
+st.error(f"Error managing grocery list: {str(e)}")
+finally:
+    conn.close()
 
-[Rest of the file remains the same]
+#Rest of the file remains the same

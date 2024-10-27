@@ -24,7 +24,6 @@ def add_sample_events():
     if conn:
         try:
             with conn.cursor() as cur:
-                # Check if events already exist
                 cur.execute("SELECT COUNT(*) FROM events")
                 result = cur.fetchone()
                 count = result[0] if result else 0
@@ -109,12 +108,26 @@ def main():
                     ["Conference", "Performance", "Academic", "Sports", "Other"]
                 )
                 
-                # Timeline view with updated card styling
-                st.subheader("Events Timeline")
-                
-                today = datetime.now().date()
+                # Group events by date
+                events_by_date = {}
                 for event in events:
                     if not filter_type or event[3] in filter_type:
+                        date = event[2]
+                        if date not in events_by_date:
+                            events_by_date[date] = []
+                        events_by_date[date].append(event)
+                
+                # Display events grouped by date
+                st.subheader("Events Timeline")
+                
+                for date, day_events in sorted(events_by_date.items()):
+                    st.markdown(f'''
+                    <div class="date-header">
+                        <h3>{format_date(str(date))}</h3>
+                    </div>
+                    ''', unsafe_allow_html=True)
+                    
+                    for event in day_events:
                         st.markdown(f'''
                         <div class="card">
                             <div class="card-header">
@@ -122,7 +135,6 @@ def main():
                                 <span class="event-type">{event[3]}</span>
                             </div>
                             <div class="card-content">
-                                <p>{format_date(str(event[2]))}</p>
                                 <p>{event[1]}</p>
                             </div>
                         </div>
