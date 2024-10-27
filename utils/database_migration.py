@@ -7,27 +7,21 @@ def update_database_schema():
     if conn:
         try:
             with conn.cursor() as cur:
-                # Add instructions column to recipes table
-                cur.execute("""
-                    ALTER TABLE recipes 
-                    ADD COLUMN IF NOT EXISTS instructions TEXT;
-                """)
-                
-                # Add unit column to grocery_items table if not exists
-                cur.execute("""
+                # Add instructions column to recipes table if not exists
+                cur.execute('''
                     DO $$ 
                     BEGIN
                         IF NOT EXISTS (
                             SELECT 1 
                             FROM information_schema.columns 
-                            WHERE table_name = 'grocery_items' 
-                            AND column_name = 'unit'
+                            WHERE table_name = 'recipes' 
+                            AND column_name = 'instructions'
                         ) THEN
-                            ALTER TABLE grocery_items 
-                            ADD COLUMN unit VARCHAR(50) DEFAULT 'piece' NOT NULL;
+                            ALTER TABLE recipes 
+                            ADD COLUMN instructions TEXT;
                         END IF;
                     END $$;
-                """)
+                ''')
                 
                 conn.commit()
                 st.success("Database schema updated successfully!")

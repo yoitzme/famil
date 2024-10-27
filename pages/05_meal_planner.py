@@ -58,11 +58,12 @@ def display_recipe_preview(recipe_id):
     if conn:
         try:
             with conn.cursor(cursor_factory=RealDictCursor) as cur:
-                # Get recipe details
-                cur.execute("""
-                    SELECT name, description, servings, prep_time
-                    FROM recipes WHERE recipe_id = %s
-                """, (recipe_id,))
+                cur.execute('''
+                    SELECT r.name, r.description, r.servings, r.prep_time,
+                           COALESCE(r.instructions, '') as instructions
+                    FROM recipes r 
+                    WHERE r.recipe_id = %s
+                ''', (recipe_id,))
                 recipe = cur.fetchone()
                 
                 if recipe:
@@ -72,23 +73,25 @@ def display_recipe_preview(recipe_id):
                     
                     **Servings:** {recipe['servings']}  
                     **Prep Time:** {recipe['prep_time']} minutes
+                    
+                    **Instructions:**  
+                    {recipe['instructions']}
                     """)
                     
-                    # Get ingredients preview
+                    # Get ingredients
                     cur.execute("""
                         SELECT ingredient_name, quantity, unit
                         FROM recipe_ingredients
                         WHERE recipe_id = %s
-                        LIMIT 3
                     """, (recipe_id,))
                     ingredients = cur.fetchall()
                     
                     if ingredients:
-                        st.markdown("#### Key Ingredients:")
+                        st.markdown("#### Ingredients:")
                         for ing in ingredients:
                             st.markdown(f"• {ing['quantity']} {ing['unit']} {ing['ingredient_name']}")
                         
-                        # Add to grocery list button with unique key
+                        # Add to grocery list button
                         servings = st.number_input(
                             "Servings to make:", 
                             min_value=1, 
@@ -112,15 +115,17 @@ def display_meal_plan(date, meal_type, recipe_options):
         index=list(recipe_options.keys()).index(existing_meal.get('recipe_id', 0))
     )
     
-    notes = ""
-    if existing_meal.get('notes'):
+    if existing_meal.get('notes'):  # Only show notes if they exist
         notes = st.text_area(
             "Notes",
             value=existing_meal['notes'],
             key=f"notes_{date}_{meal_type}",
             height=100
         )
+    else:
+        notes = ""
     
+    # Always keep recipe details expanded when a recipe is selected
     if recipe_id != 0:
         with st.expander("Recipe Details", expanded=True):
             display_recipe_preview(recipe_id)
@@ -186,7 +191,6 @@ def main():
         prep_time = st.number_input("Prep Time (minutes)", min_value=1, value=30, key="recipe_prep_time")
         instructions = st.text_area("Instructions", key="recipe_instructions")
         
-        # Dynamic ingredient inputs with visual feedback
         col1, col2 = st.columns(2)
         with col1:
             if st.button('➕ Add Ingredient', key='add_ing'):
@@ -200,25 +204,23 @@ def main():
         ingredients = []
         for i in range(st.session_state.num_ingredients):
             with st.container():
-                st.markdown(f"### Ingredient {i+1}")
                 cols = st.columns(3)
                 with cols[0]:
-                    name_i = st.text_input(f"Name", key=f"ingredient_name_{i}")
+                    name_i = st.text_input("Name", key=f"ing_name_{i}")
                 with cols[1]:
                     qty_i = st.number_input(
-                        f"Quantity",
+                        "Quantity",
                         min_value=0.1,
                         value=1.0,
                         step=0.1,
-                        key=f"qty_ingredient_{i}"
+                        key=f"ing_qty_{i}"
                     )
                 with cols[2]:
                     unit_i = st.selectbox(
-                        f"Unit",
+                        "Unit",
                         ["g", "kg", "ml", "l", "cup", "tbsp", "tsp", "piece"],
-                        key=f"unit_ingredient_{i}"
+                        key=f"ing_unit_{i}"
                     )
-                
                 if name_i and qty_i > 0:
                     ingredients.append((name_i, qty_i, unit_i))
         
