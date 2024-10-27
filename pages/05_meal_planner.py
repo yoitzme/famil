@@ -24,6 +24,10 @@ def get_existing_meal(date, meal_type):
 
 def save_meal_plan(date, meal_type, recipe_id, notes):
     """Save or update a meal plan."""
+    if recipe_id == 0:
+        st.warning("Please select a recipe first")
+        return
+        
     conn = get_db_connection()
     if conn:
         try:
@@ -83,6 +87,11 @@ def display_recipe_preview(recipe_id):
                         st.markdown("#### Key Ingredients:")
                         for ing in ingredients:
                             st.markdown(f"• {ing['quantity']} {ing['unit']} {ing['ingredient_name']}")
+                        
+                        # Add to grocery list button
+                        servings = st.number_input("Servings to make:", min_value=1, value=recipe['servings'])
+                        if st.button("Add ingredients to grocery list"):
+                            add_ingredients_to_grocery_list(recipe_id, servings / recipe['servings'])
         finally:
             conn.close()
 
@@ -106,7 +115,7 @@ def display_meal_plan(date, meal_type, recipe_options):
     )
     
     if recipe_id != 0:
-        with st.expander("Recipe Details", expanded=False):
+        with st.expander("Recipe Details", expanded=True):  # Changed to True
             display_recipe_preview(recipe_id)
     
     if st.button("Save", key=f"save_{date}_{meal_type}"):
@@ -158,6 +167,10 @@ def add_ingredients_to_grocery_list(recipe_id, servings_multiplier=1):
 def main():
     st.title("Meal Planner 🍳")
     
+    # Initialize session state
+    if 'num_ingredients' not in st.session_state:
+        st.session_state.num_ingredients = 3
+    
     # Add new recipe section
     with st.expander("Add New Recipe"):
         name = st.text_input("Recipe Name")
@@ -167,19 +180,18 @@ def main():
         instructions = st.text_area("Instructions")
         
         # Dynamic ingredient inputs with visual feedback
-        num_ingredients = st.session_state.get('num_ingredients', 3)
         col1, col2 = st.columns(2)
         with col1:
             if st.button('➕ Add Ingredient', key='add_ing'):
                 st.session_state.num_ingredients += 1
-                st.experimental_rerun()
+                st.rerun()
         with col2:
-            if st.button('➖ Remove Ingredient', key='remove_ing') and num_ingredients > 1:
+            if st.button('➖ Remove Ingredient', key='remove_ing') and st.session_state.num_ingredients > 1:
                 st.session_state.num_ingredients -= 1
-                st.experimental_rerun()
+                st.rerun()
         
         ingredients = []
-        for i in range(num_ingredients):
+        for i in range(st.session_state.num_ingredients):
             with st.container():
                 st.markdown(f"### Ingredient {i+1}")
                 cols = st.columns(3)
@@ -215,24 +227,28 @@ def main():
                         with conn.cursor() as cur:
                             cur.execute("BEGIN")
                             try:
+                                # Insert recipe
                                 cur.execute("""
                                     INSERT INTO recipes 
                                     (name, description, servings, prep_time, instructions)
                                     VALUES (%s, %s, %s, %s, %s)
                                     RETURNING recipe_id
                                 """, (name, description, servings, prep_time, instructions))
-                                recipe_id = cur.fetchone()[0]
-                                
-                                for ing in ingredients:
-                                    cur.execute("""
-                                        INSERT INTO recipe_ingredients
-                                        (recipe_id, ingredient_name, quantity, unit)
-                                        VALUES (%s, %s, %s, %s)
-                                    """, (recipe_id, ing[0], ing[1], ing[2]))
-                                
-                                conn.commit()
-                                st.success("Recipe added successfully!")
-                                st.session_state.num_ingredients = 3  # Reset ingredient count
+                                result = cur.fetchone()
+                                if result:
+                                    recipe_id = result[0]
+                                    
+                                    # Insert ingredients
+                                    for ing in ingredients:
+                                        cur.execute("""
+                                            INSERT INTO recipe_ingredients
+                                            (recipe_id, ingredient_name, quantity, unit)
+                                            VALUES (%s, %s, %s, %s)
+                                        """, (recipe_id, ing[0], ing[1], ing[2]))
+                                    
+                                    conn.commit()
+                                    st.success("Recipe added successfully!")
+                                    st.session_state.num_ingredients = 3  # Reset ingredient count
                             except Exception as e:
                                 conn.rollback()
                                 st.error(f"Error adding recipe: {str(e)}")
