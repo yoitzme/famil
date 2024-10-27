@@ -88,9 +88,14 @@ def display_recipe_preview(recipe_id):
                         for ing in ingredients:
                             st.markdown(f"• {ing['quantity']} {ing['unit']} {ing['ingredient_name']}")
                         
-                        # Add to grocery list button
-                        servings = st.number_input("Servings to make:", min_value=1, value=recipe['servings'])
-                        if st.button("Add ingredients to grocery list"):
+                        # Add to grocery list button with unique key
+                        servings = st.number_input(
+                            "Servings to make:", 
+                            min_value=1, 
+                            value=recipe['servings'],
+                            key=f"servings_preview_{recipe_id}"
+                        )
+                        if st.button("Add ingredients to grocery list", key=f"add_to_grocery_{recipe_id}"):
                             add_ingredients_to_grocery_list(recipe_id, servings / recipe['servings'])
         finally:
             conn.close()
@@ -107,15 +112,17 @@ def display_meal_plan(date, meal_type, recipe_options):
         index=list(recipe_options.keys()).index(existing_meal.get('recipe_id', 0))
     )
     
-    notes = st.text_area(
-        "Notes",
-        value=existing_meal.get('notes', ''),
-        key=f"notes_{date}_{meal_type}",
-        height=100
-    )
+    notes = ""
+    if existing_meal.get('notes'):
+        notes = st.text_area(
+            "Notes",
+            value=existing_meal['notes'],
+            key=f"notes_{date}_{meal_type}",
+            height=100
+        )
     
     if recipe_id != 0:
-        with st.expander("Recipe Details", expanded=True):  # Changed to True
+        with st.expander("Recipe Details", expanded=True):
             display_recipe_preview(recipe_id)
     
     if st.button("Save", key=f"save_{date}_{meal_type}"):
@@ -173,11 +180,11 @@ def main():
     
     # Add new recipe section
     with st.expander("Add New Recipe"):
-        name = st.text_input("Recipe Name")
-        description = st.text_area("Description")
-        servings = st.number_input("Servings", min_value=1, value=4)
-        prep_time = st.number_input("Prep Time (minutes)", min_value=1, value=30)
-        instructions = st.text_area("Instructions")
+        name = st.text_input("Recipe Name", key="recipe_name")
+        description = st.text_area("Description", key="recipe_description")
+        servings = st.number_input("Servings", min_value=1, value=4, key="recipe_servings")
+        prep_time = st.number_input("Prep Time (minutes)", min_value=1, value=30, key="recipe_prep_time")
+        instructions = st.text_area("Instructions", key="recipe_instructions")
         
         # Dynamic ingredient inputs with visual feedback
         col1, col2 = st.columns(2)
@@ -196,26 +203,26 @@ def main():
                 st.markdown(f"### Ingredient {i+1}")
                 cols = st.columns(3)
                 with cols[0]:
-                    name_i = st.text_input(f"Name", key=f"name_{i}")
+                    name_i = st.text_input(f"Name", key=f"ingredient_name_{i}")
                 with cols[1]:
                     qty_i = st.number_input(
                         f"Quantity",
                         min_value=0.1,
                         value=1.0,
                         step=0.1,
-                        key=f"qty_{i}"
+                        key=f"qty_ingredient_{i}"
                     )
                 with cols[2]:
                     unit_i = st.selectbox(
                         f"Unit",
                         ["g", "kg", "ml", "l", "cup", "tbsp", "tsp", "piece"],
-                        key=f"unit_{i}"
+                        key=f"unit_ingredient_{i}"
                     )
                 
                 if name_i and qty_i > 0:
                     ingredients.append((name_i, qty_i, unit_i))
         
-        if st.button("Save Recipe"):
+        if st.button("Save Recipe", key="save_recipe"):
             if not name:
                 st.error("Recipe name is required")
             elif not ingredients:
@@ -227,7 +234,6 @@ def main():
                         with conn.cursor() as cur:
                             cur.execute("BEGIN")
                             try:
-                                # Insert recipe
                                 cur.execute("""
                                     INSERT INTO recipes 
                                     (name, description, servings, prep_time, instructions)
@@ -238,7 +244,6 @@ def main():
                                 if result:
                                     recipe_id = result[0]
                                     
-                                    # Insert ingredients
                                     for ing in ingredients:
                                         cur.execute("""
                                             INSERT INTO recipe_ingredients
@@ -257,7 +262,7 @@ def main():
     
     # Meal Planning section
     st.header("Meal Planning")
-    date = st.date_input("Select date", datetime.now())
+    date = st.date_input("Select date", datetime.now(), key="meal_plan_date")
     
     conn = get_db_connection()
     if conn:
