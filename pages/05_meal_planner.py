@@ -6,6 +6,78 @@ from psycopg2.extras import RealDictCursor
 
 configure_page()
 
+# Add responsive styles
+st.markdown("""
+<style>
+    /* Mobile-friendly styles */
+    @media (max-width: 768px) {
+        .stColumn {
+            flex: 0 1 100% !important;
+            width: 100% !important;
+            margin-bottom: 1rem;
+        }
+        
+        .meal-card {
+            margin: 0.5rem 0;
+            padding: 0.75rem;
+        }
+        
+        .meal-title {
+            font-size: 1.1rem;
+        }
+        
+        .meal-description {
+            font-size: 0.9rem;
+        }
+    }
+    
+    /* Enhanced card styling */
+    .meal-card {
+        background-color: var(--secondary-background-color);
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 0.75rem 0;
+        border-left: 4px solid var(--primary-color);
+    }
+    
+    .meal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+    
+    .meal-title {
+        color: #FFFFFF;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+    
+    .meal-type {
+        background: var(--primary-color);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        color: #FFFFFF;
+    }
+    
+    .meal-content {
+        color: #FFFFFF;
+        font-size: 1rem;
+    }
+    
+    .ingredient-list {
+        margin-top: 1rem;
+        padding-left: 1rem;
+    }
+    
+    .ingredient-item {
+        margin: 0.5rem 0;
+        color: #FFFFFF;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 def get_existing_meal(date, meal_type):
     """Get existing meal plan for a specific date and meal type."""
     conn = get_db_connection()
@@ -67,16 +139,21 @@ def display_recipe_preview(recipe_id):
                 recipe = cur.fetchone()
                 
                 if recipe:
-                    st.markdown(f"""
-                    #### {recipe['name']}
-                    {recipe['description']}
-                    
-                    **Servings:** {recipe['servings']}  
-                    **Prep Time:** {recipe['prep_time']} minutes
-                    
-                    **Instructions:**  
-                    {recipe['instructions']}
-                    """)
+                    st.markdown(f'''
+                    <div class="meal-card">
+                        <div class="meal-header">
+                            <span class="meal-title">{recipe['name']}</span>
+                            <span class="meal-type">Recipe</span>
+                        </div>
+                        <div class="meal-content">
+                            <p>{recipe['description']}</p>
+                            <p><strong>Servings:</strong> {recipe['servings']}<br>
+                            <strong>Prep Time:</strong> {recipe['prep_time']} minutes</p>
+                            <p><strong>Instructions:</strong><br>
+                            {recipe['instructions']}</p>
+                        </div>
+                    </div>
+                    ''', unsafe_allow_html=True)
                     
                     # Get ingredients
                     cur.execute("""
@@ -87,9 +164,13 @@ def display_recipe_preview(recipe_id):
                     ingredients = cur.fetchall()
                     
                     if ingredients:
-                        st.markdown("#### Ingredients:")
+                        st.markdown('<div class="ingredient-list">', unsafe_allow_html=True)
                         for ing in ingredients:
-                            st.markdown(f"• {ing['quantity']} {ing['unit']} {ing['ingredient_name']}")
+                            st.markdown(
+                                f'<div class="ingredient-item">• {ing["quantity"]} {ing["unit"]} {ing["ingredient_name"]}</div>',
+                                unsafe_allow_html=True
+                            )
+                        st.markdown('</div>', unsafe_allow_html=True)
                         
                         # Add to grocery list button
                         servings = st.number_input(
@@ -102,36 +183,6 @@ def display_recipe_preview(recipe_id):
                             add_ingredients_to_grocery_list(recipe_id, servings / recipe['servings'])
         finally:
             conn.close()
-
-def display_meal_plan(date, meal_type, recipe_options):
-    """Display meal plan for a specific meal type."""
-    existing_meal = get_existing_meal(date, meal_type)
-    
-    recipe_id = st.selectbox(
-        "Select Recipe",
-        options=list(recipe_options.keys()),
-        format_func=lambda x: recipe_options[x],
-        key=f"{date}_{meal_type}",
-        index=list(recipe_options.keys()).index(existing_meal.get('recipe_id', 0))
-    )
-    
-    if existing_meal.get('notes'):  # Only show notes if they exist
-        notes = st.text_area(
-            "Notes",
-            value=existing_meal['notes'],
-            key=f"notes_{date}_{meal_type}",
-            height=100
-        )
-    else:
-        notes = ""
-    
-    # Always keep recipe details expanded when a recipe is selected
-    if recipe_id != 0:
-        with st.expander("Recipe Details", expanded=True):
-            display_recipe_preview(recipe_id)
-    
-    if st.button("Save", key=f"save_{date}_{meal_type}"):
-        save_meal_plan(date, meal_type, recipe_id, notes)
 
 def add_ingredients_to_grocery_list(recipe_id, servings_multiplier=1):
     """Add recipe ingredients to grocery list."""
@@ -175,6 +226,36 @@ def add_ingredients_to_grocery_list(recipe_id, servings_multiplier=1):
             st.error(f"Error managing ingredients: {str(e)}")
         finally:
             conn.close()
+
+def display_meal_plan(date, meal_type, recipe_options):
+    """Display meal plan for a specific meal type."""
+    existing_meal = get_existing_meal(date, meal_type)
+    
+    recipe_id = st.selectbox(
+        "Select Recipe",
+        options=list(recipe_options.keys()),
+        format_func=lambda x: recipe_options[x],
+        key=f"{date}_{meal_type}",
+        index=list(recipe_options.keys()).index(existing_meal.get('recipe_id', 0))
+    )
+    
+    if existing_meal.get('notes'):  # Only show notes if they exist
+        notes = st.text_area(
+            "Notes",
+            value=existing_meal['notes'],
+            key=f"notes_{date}_{meal_type}",
+            height=100
+        )
+    else:
+        notes = ""
+    
+    # Always keep recipe details expanded when a recipe is selected
+    if recipe_id != 0:
+        with st.expander("Recipe Details", expanded=True):
+            display_recipe_preview(recipe_id)
+    
+    if st.button("Save", key=f"save_{date}_{meal_type}"):
+        save_meal_plan(date, meal_type, recipe_id, notes)
 
 def main():
     st.title("Meal Planner 🍳")
