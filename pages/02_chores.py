@@ -38,6 +38,15 @@ def add_sample_chores():
             conn.close()
 
 def main():
+    st.markdown("""
+        <style>
+            /* Show sidebar navigation */
+            section[data-testid="stSidebarNav"] {
+                display: block !important;
+                width: auto !important;
+            }
+        </style>
+    """, unsafe_allow_html=True)
     st.title("Family Chores ✨")
     
     # Add sample data button

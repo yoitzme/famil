@@ -28,7 +28,7 @@ agentRequireRestartOnSave = false
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "streamlit run main.py --server.port 5000"
+args = "streamlit run main.py --server.port=5000 --server.address=0.0.0.0"
 waitForPort = 5000
 
 [[workflows.workflow]]
@@ -39,11 +39,14 @@ author = "agent"
 agentRequireRestartOnSave = false
 
 [[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "python utils/database_migration.py"
+args = "python run_migration.py"
 
 [deployment]
-run = ["sh", "-c", "streamlit run main.py --server.port 5000"]
+run = ["sh", "-c", "python run_migration.py && streamlit run main.py --server.port 5000"]
 
 [[ports]]
 localPort = 5000
