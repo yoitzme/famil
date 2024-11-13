@@ -101,3 +101,16 @@ CREATE TABLE IF NOT EXISTS meal_plans (
     notes TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Family messages table
+CREATE TABLE IF NOT EXISTS family_messages (
+    message_id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    priority INTEGER DEFAULT 1,
+    expires_at DATE,
+    pinned BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

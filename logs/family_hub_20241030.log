@@ -1,0 +1,1527 @@
+2024-10-30 00:31:45,607 - INFO - logger - log_info - Starting system diagnostics
+2024-10-30 00:31:45,857 - INFO - logger - log_info - Database connection check passed
+2024-10-30 00:31:46,314 - INFO - logger - log_info - All system checks passed
+2024-10-30 00:31:48,321 - INFO - logger - log_info - Starting system diagnostics
+2024-10-30 00:31:48,562 - INFO - logger - log_info - Database connection check passed
+2024-10-30 00:31:49,008 - INFO - logger - log_info - All system checks passed
+2024-10-30 00:31:56,346 - INFO - logger - log_info - Starting system diagnostics
+2024-10-30 00:31:56,579 - INFO - logger - log_info - Database connection check passed
+2024-10-30 00:31:57,002 - INFO - logger - log_info - All system checks passed
+2024-10-30 00:34:08,762 - INFO - logger - log_info - Starting system diagnostics
+2024-10-30 00:34:08,764 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:34:08,802 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:34:08,803 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:34:09,335 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:34:09,348 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:34:09,348 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:34:09,462 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:34:09,514 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:34:09,514 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:34:09,515 - ERROR - logger - log_error - Error: Missing required module: python-dateutil | Context: No module named 'python-dateutil'
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 34, in check_imports
+    importlib.import_module(module)
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'python-dateutil'
+2024-10-30 00:34:09,518 - ERROR - logger - log_error - Error: Error importing module utils.features | Context: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 75, in check_module_functions
+    module = importlib.import_module(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/runner/workspace/utils/features.py", line 6, in <module>
+    from utils.styles import get_card_style
+ImportError: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+2024-10-30 00:34:09,743 - INFO - logger - log_info - Database connection check passed
+2024-10-30 00:34:10,200 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 00:35:58,311 - INFO - logger - log_info - Starting system diagnostics
+2024-10-30 00:35:58,311 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:35:58,344 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:35:58,345 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:35:58,345 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:35:58,346 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:35:58,346 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:35:58,347 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:35:58,347 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:35:58,348 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:35:58,348 - ERROR - logger - log_error - Error: Missing required module: python-dateutil | Context: No module named 'python-dateutil'
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 34, in check_imports
+    importlib.import_module(module)
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'python-dateutil'
+2024-10-30 00:35:58,353 - ERROR - logger - log_error - Error: Error importing module utils.features | Context: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 75, in check_module_functions
+    module = importlib.import_module(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/runner/workspace/utils/features.py", line 6, in <module>
+    from utils.styles import get_card_style
+ImportError: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+2024-10-30 00:35:58,590 - INFO - logger - log_info - Database connection check passed
+2024-10-30 00:35:59,030 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 00:36:52,587 - INFO - logger - log_info - Starting system diagnostics
+2024-10-30 00:36:52,588 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:36:52,624 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:36:52,624 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:36:52,625 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:36:52,625 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:36:52,625 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:36:52,626 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:36:52,626 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:36:52,626 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:36:52,627 - ERROR - logger - log_error - Error: Missing required module: python-dateutil | Context: No module named 'python-dateutil'
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 34, in check_imports
+    importlib.import_module(module)
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'python-dateutil'
+2024-10-30 00:36:52,628 - ERROR - logger - log_error - Error: Error importing module utils.features | Context: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 75, in check_module_functions
+    module = importlib.import_module(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/runner/workspace/utils/features.py", line 6, in <module>
+    from utils.styles import get_card_style
+ImportError: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+2024-10-30 00:36:52,854 - INFO - logger - log_info - Database connection check passed
+2024-10-30 00:36:53,322 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 00:37:30,990 - INFO - logger - log_info - Starting system diagnostics
+2024-10-30 00:37:30,990 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:37:31,027 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:37:31,027 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:37:31,027 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:37:31,028 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:37:31,028 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:37:31,029 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:37:31,029 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:37:31,029 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:37:31,030 - ERROR - logger - log_error - Error: Missing required module: python-dateutil | Context: No module named 'python-dateutil'
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 34, in check_imports
+    importlib.import_module(module)
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'python-dateutil'
+2024-10-30 00:37:31,031 - ERROR - logger - log_error - Error: Error importing module utils.features | Context: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 75, in check_module_functions
+    module = importlib.import_module(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/runner/workspace/utils/features.py", line 6, in <module>
+    from utils.styles import get_card_style
+ImportError: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+2024-10-30 00:37:31,264 - INFO - logger - log_info - Database connection check passed
+2024-10-30 00:37:31,678 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 00:37:45,592 - INFO - logger - log_info - Starting system diagnostics
+2024-10-30 00:37:45,593 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:37:45,628 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:37:45,629 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:37:45,629 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:37:45,629 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:37:45,630 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:37:45,630 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:37:45,630 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:37:45,631 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:37:45,631 - ERROR - logger - log_error - Error: Missing required module: python-dateutil | Context: No module named 'python-dateutil'
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 34, in check_imports
+    importlib.import_module(module)
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'python-dateutil'
+2024-10-30 00:37:45,634 - ERROR - logger - log_error - Error: Error importing module utils.features | Context: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 75, in check_module_functions
+    module = importlib.import_module(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/runner/workspace/utils/features.py", line 6, in <module>
+    from utils.styles import get_card_style
+ImportError: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+2024-10-30 00:37:45,874 - INFO - logger - log_info - Database connection check passed
+2024-10-30 00:37:46,324 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 00:38:35,925 - INFO - logger - log_info - Starting system diagnostics
+2024-10-30 00:38:35,926 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:38:35,964 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:38:35,964 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:38:35,965 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:38:35,965 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:38:35,966 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:38:35,966 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:38:35,966 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:38:35,967 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:38:35,967 - ERROR - logger - log_error - Error: Missing required module: python-dateutil | Context: No module named 'python-dateutil'
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 34, in check_imports
+    importlib.import_module(module)
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'python-dateutil'
+2024-10-30 00:38:35,968 - ERROR - logger - log_error - Error: Error importing module utils.features | Context: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 75, in check_module_functions
+    module = importlib.import_module(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/runner/workspace/utils/features.py", line 6, in <module>
+    from utils.styles import get_card_style
+ImportError: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+2024-10-30 00:38:36,213 - INFO - logger - log_info - Database connection check passed
+2024-10-30 00:38:36,642 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 00:40:16,412 - INFO - logger - log_info - Starting system diagnostics
+2024-10-30 00:40:16,413 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:40:16,459 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:40:16,460 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:40:16,460 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:40:16,460 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:40:16,461 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:40:16,461 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:40:16,461 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:40:16,462 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:40:16,462 - ERROR - logger - log_error - Error: Missing required module: python-dateutil | Context: No module named 'python-dateutil'
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 34, in check_imports
+    importlib.import_module(module)
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'python-dateutil'
+2024-10-30 00:40:16,465 - ERROR - logger - log_error - Error: Error importing module utils.features | Context: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 75, in check_module_functions
+    module = importlib.import_module(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/runner/workspace/utils/features.py", line 6, in <module>
+    from utils.styles import get_card_style
+ImportError: cannot import name 'get_card_style' from 'utils.styles' (/home/runner/workspace/utils/styles.py)
+2024-10-30 00:40:16,698 - INFO - logger - log_info - Database connection check passed
+2024-10-30 00:40:17,141 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 00:42:33,814 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 00:42:33,816 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:42:33,851 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:42:33,851 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:42:33,851 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:42:33,851 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:42:33,852 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:42:33,852 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:42:33,852 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:42:33,853 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:42:33,853 - ERROR - logger - log_error - Error: Missing required module: python-dateutil | Context: No module named 'python-dateutil'
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 37, in check_imports
+    importlib.import_module(module)
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'python-dateutil'
+2024-10-30 00:42:52,249 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 00:42:52,250 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:42:52,287 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:42:52,287 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:42:52,288 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:42:52,288 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:42:52,288 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:42:52,288 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:42:52,289 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:42:52,289 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:42:52,290 - ERROR - logger - log_error - Error: Missing required module: python-dateutil | Context: No module named 'python-dateutil'
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 37, in check_imports
+    importlib.import_module(module)
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'python-dateutil'
+2024-10-30 00:42:53,498 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 00:42:53,499 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:42:53,536 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:42:53,537 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:42:53,537 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:42:53,538 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:42:53,538 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:42:53,538 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:42:53,539 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:42:53,539 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:42:53,539 - ERROR - logger - log_error - Error: Missing required module: python-dateutil | Context: No module named 'python-dateutil'
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 37, in check_imports
+    importlib.import_module(module)
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'python-dateutil'
+2024-10-30 00:44:42,671 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 00:44:42,674 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:44:42,709 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:44:42,709 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:44:42,915 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:44:42,917 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:44:42,917 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:44:42,958 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:44:42,971 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:44:42,971 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:44:42,972 - ERROR - logger - log_error - Error: Missing required module: python-dateutil | Context: No module named 'python-dateutil'
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 37, in check_imports
+    importlib.import_module(module)
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'python-dateutil'
+2024-10-30 00:47:29,977 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 00:47:29,979 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:47:30,015 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:47:30,016 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:47:30,209 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:47:30,211 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:47:30,212 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:47:30,251 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:47:30,263 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:47:30,263 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:47:30,263 - ERROR - logger - log_error - Error: Missing required module: python-dateutil | Context: No module named 'python-dateutil'
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 37, in check_imports
+    importlib.import_module(module)
+  File "/nix/store/f98g7xbckgqbkagdvpzc2r6lv3h1p9ki-python3-3.11.9/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1140, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'python-dateutil'
+2024-10-30 00:52:01,061 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 00:52:01,063 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:52:01,064 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 00:52:01,064 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:52:01,064 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:52:01,259 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:52:01,261 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:52:01,261 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:52:01,303 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:52:01,315 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:52:01,315 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:52:01,316 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 00:52:07,444 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 00:52:07,445 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:52:07,445 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 00:52:07,447 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:52:07,447 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:52:07,448 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:52:07,448 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:52:07,448 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:52:07,449 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:52:07,449 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:52:07,450 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:52:07,450 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 00:52:16,527 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 00:52:16,528 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:52:16,528 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 00:52:16,529 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:52:16,529 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:52:16,530 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:52:16,530 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:52:16,531 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:52:16,531 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:52:16,532 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:52:16,532 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:52:16,532 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 00:53:38,480 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 00:53:38,482 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:53:38,482 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 00:53:38,483 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:53:38,483 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:53:38,682 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:53:38,684 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:53:38,684 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:53:38,723 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:53:38,734 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:53:38,735 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:53:38,741 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 00:53:53,226 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 00:53:53,227 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:53:53,228 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 00:53:53,229 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:53:53,230 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:53:53,230 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:53:53,230 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:53:53,231 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:53:53,231 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:53:53,232 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:53:53,233 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:53:53,233 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 00:54:51,014 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 00:54:51,015 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:54:51,015 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 00:54:51,016 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:54:51,017 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:54:51,017 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:54:51,018 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:54:51,018 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:54:51,018 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:54:51,018 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:54:51,019 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:54:51,019 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 00:56:12,186 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 00:56:12,187 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:56:12,187 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 00:56:12,189 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:56:12,190 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:56:12,190 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:56:12,190 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:56:12,191 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:56:12,191 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:56:12,191 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:56:12,192 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:56:12,192 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 00:58:38,072 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 00:58:38,074 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 00:58:38,075 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 00:58:38,075 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 00:58:38,076 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 00:58:38,076 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 00:58:38,296 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 00:58:38,298 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 00:58:38,298 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 00:58:38,340 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 00:58:38,354 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 00:58:38,354 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 00:58:38,361 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 00:58:38,816 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 00:58:38,816 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 00:58:38,817 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 00:58:39,819 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 00:58:39,823 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 00:58:41,197 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 00:58:41,197 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 00:58:41,198 - ERROR - logger - log_error - Error: Table Structure: notifications check failed | Context: Details: Structure issues found in notifications
+Error: Missing columns: read, id
+NoneType: None
+2024-10-30 00:58:41,198 - ERROR - logger - log_error - Error: Table Structure: recipe_ingredients check failed | Context: Details: Structure issues found in recipe_ingredients
+Error: Missing columns: id
+NoneType: None
+2024-10-30 00:58:41,198 - ERROR - logger - log_error - Error: Index Check: family_messages check failed | Context: Details: No primary key index found for family_messages
+Error: Missing primary key index
+NoneType: None
+2024-10-30 00:58:41,199 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 00:58:43,018 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 639 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 00:58:43,018 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3505 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 00:58:43,019 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3481 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 00:58:43,019 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 00:58:43,019 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 00:58:43,019 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 00:58:43,020 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 00:58:43,020 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 00:58:43,021 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 00:58:43,022 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 00:58:43,074 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 02:31:13,957 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 02:31:13,958 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 02:31:13,958 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 02:31:13,959 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 02:31:13,959 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 02:31:13,960 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 02:31:14,258 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 02:31:14,268 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 02:31:14,268 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 02:31:14,337 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 02:31:14,370 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 02:31:14,370 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 02:31:14,370 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 02:31:14,371 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 02:31:14,371 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 02:31:14,372 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 02:31:15,374 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 02:31:15,377 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 02:31:16,746 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:31:16,748 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 02:31:16,752 - ERROR - logger - log_error - Error: Diagnostic Error in Database Structure: There are multiple `download_button` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `download_button` element. | Context: Context: None
+Traceback: Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 617, in run_diagnostics
+    log_error(f"{result['Component']} check failed",
+  File "/home/runner/workspace/utils/logger.py", line 72, in log_error
+    st.download_button(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/elements/widgets/button.py", line 421, in download_button
+    return self._download_button(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/elements/widgets/button.py", line 687, in _download_button
+    element_id = compute_and_register_element_id(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/elements/lib/utils.py", line 226, in compute_and_register_element_id
+    _register_element_id(ctx, element_type, element_id)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/elements/lib/utils.py", line 132, in _register_element_id
+    raise StreamlitDuplicateElementId(element_type)
+streamlit.errors.StreamlitDuplicateElementId: There are multiple `download_button` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `download_button` element.
+Traceback (most recent call last):
+  File "/home/runner/workspace/utils/error_diagnostics.py", line 617, in run_diagnostics
+    log_error(f"{result['Component']} check failed",
+  File "/home/runner/workspace/utils/logger.py", line 72, in log_error
+    st.download_button(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/elements/widgets/button.py", line 421, in download_button
+    return self._download_button(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/elements/widgets/button.py", line 687, in _download_button
+    element_id = compute_and_register_element_id(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/elements/lib/utils.py", line 226, in compute_and_register_element_id
+    _register_element_id(ctx, element_type, element_id)
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/streamlit/elements/lib/utils.py", line 132, in _register_element_id
+    raise StreamlitDuplicateElementId(element_type)
+streamlit.errors.StreamlitDuplicateElementId: There are multiple `download_button` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `download_button` element.
+2024-10-30 02:32:49,195 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 02:32:49,196 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 02:32:49,197 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 02:32:49,197 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 02:32:49,197 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 02:32:49,198 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 02:32:49,198 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 02:32:49,199 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 02:32:49,199 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 02:32:49,199 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 02:32:49,200 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 02:32:49,200 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 02:32:49,200 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 02:32:49,201 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 02:32:49,201 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 02:32:49,202 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 02:32:50,203 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 02:32:50,207 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 02:32:51,585 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:32:51,588 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 02:32:51,591 - ERROR - logger - log_error - Error: Table Structure: notifications check failed | Context: Details: Structure issues found in notifications
+Error: Missing columns: read, id
+NoneType: None
+2024-10-30 02:32:51,592 - ERROR - logger - log_error - Error: Table Structure: recipe_ingredients check failed | Context: Details: Structure issues found in recipe_ingredients
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:32:51,593 - ERROR - logger - log_error - Error: Index Check: family_messages check failed | Context: Details: No primary key index found for family_messages
+Error: Missing primary key index
+NoneType: None
+2024-10-30 02:32:51,595 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 02:32:53,574 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 639 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:32:53,576 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3505 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:32:53,578 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3481 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:32:53,579 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:32:53,581 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:32:53,582 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:32:53,583 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:32:53,584 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 02:32:53,588 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 02:32:53,589 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 02:32:53,638 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 02:36:15,495 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 02:36:15,496 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 02:36:15,496 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 02:36:15,497 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 02:36:15,497 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 02:36:15,499 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 02:36:15,500 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 02:36:15,500 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 02:36:15,500 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 02:36:15,500 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 02:36:15,501 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 02:36:15,501 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 02:36:15,501 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 02:36:15,502 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 02:36:15,502 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 02:36:15,503 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 02:36:16,505 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 02:36:16,510 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 02:36:17,767 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:36:17,769 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 02:36:17,770 - ERROR - logger - log_error - Error: Table Structure: notifications check failed | Context: Details: Structure issues found in notifications
+Error: Missing columns: read, id
+NoneType: None
+2024-10-30 02:36:17,772 - ERROR - logger - log_error - Error: Table Structure: recipe_ingredients check failed | Context: Details: Structure issues found in recipe_ingredients
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:36:17,773 - ERROR - logger - log_error - Error: Index Check: family_messages check failed | Context: Details: No primary key index found for family_messages
+Error: Missing primary key index
+NoneType: None
+2024-10-30 02:36:17,774 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 02:36:19,761 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 639 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:36:19,763 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3505 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:36:19,765 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3481 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:36:19,766 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:36:19,768 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:36:19,769 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:36:19,771 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:36:19,772 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 02:36:19,774 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 02:36:19,776 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 02:36:19,845 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 02:37:48,942 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 02:37:48,944 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 02:37:48,944 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 02:37:48,944 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 02:37:48,945 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 02:37:48,945 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 02:37:48,945 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 02:37:48,945 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 02:37:48,946 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 02:37:48,946 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 02:37:48,946 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 02:37:48,946 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 02:37:48,947 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 02:37:48,947 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 02:37:48,947 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 02:37:48,948 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 02:37:49,949 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 02:37:49,952 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 02:37:51,255 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:37:51,257 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 02:37:51,259 - ERROR - logger - log_error - Error: Table Structure: notifications check failed | Context: Details: Structure issues found in notifications
+Error: Missing columns: read, id
+NoneType: None
+2024-10-30 02:37:51,260 - ERROR - logger - log_error - Error: Table Structure: recipe_ingredients check failed | Context: Details: Structure issues found in recipe_ingredients
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:37:51,262 - ERROR - logger - log_error - Error: Index Check: family_messages check failed | Context: Details: No primary key index found for family_messages
+Error: Missing primary key index
+NoneType: None
+2024-10-30 02:37:51,263 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 02:37:53,122 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 639 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:37:53,124 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3505 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:37:53,126 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3481 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:37:53,127 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:37:53,128 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:37:53,130 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:37:53,131 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:37:53,132 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 02:37:53,134 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 02:37:53,136 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 02:37:53,184 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 02:40:23,661 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 02:40:23,662 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 02:40:23,662 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 02:40:23,663 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 02:40:23,663 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 02:40:23,664 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 02:40:23,664 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 02:40:23,664 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 02:40:23,664 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 02:40:23,665 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 02:40:23,665 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 02:40:23,665 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 02:40:23,666 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 02:40:23,666 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 02:40:23,667 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 02:40:23,667 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 02:40:24,669 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 02:40:24,673 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 02:40:26,055 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:40:26,057 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 02:40:26,059 - ERROR - logger - log_error - Error: Table Structure: notifications check failed | Context: Details: Structure issues found in notifications
+Error: Missing columns: read, id
+NoneType: None
+2024-10-30 02:40:26,060 - ERROR - logger - log_error - Error: Table Structure: recipe_ingredients check failed | Context: Details: Structure issues found in recipe_ingredients
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:40:26,061 - ERROR - logger - log_error - Error: Index Check: family_messages check failed | Context: Details: No primary key index found for family_messages
+Error: Missing primary key index
+NoneType: None
+2024-10-30 02:40:26,063 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 02:40:28,038 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 639 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:40:28,040 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3505 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:40:28,041 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3481 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:40:28,043 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:40:28,044 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:40:28,045 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:40:28,046 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:40:28,048 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 02:40:28,050 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 02:40:28,052 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 02:40:28,100 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 02:42:25,389 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 02:42:25,390 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 02:42:25,390 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 02:42:25,391 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 02:42:25,391 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 02:42:25,392 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 02:42:25,392 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 02:42:25,392 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 02:42:25,393 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 02:42:25,393 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 02:42:25,393 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 02:42:25,394 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 02:42:25,394 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 02:42:25,395 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 02:42:25,395 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 02:42:25,396 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 02:42:26,397 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 02:42:26,401 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 02:42:27,656 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:42:27,658 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 02:42:27,660 - ERROR - logger - log_error - Error: Table Structure: notifications check failed | Context: Details: Structure issues found in notifications
+Error: Missing columns: read, id
+NoneType: None
+2024-10-30 02:42:27,661 - ERROR - logger - log_error - Error: Table Structure: recipe_ingredients check failed | Context: Details: Structure issues found in recipe_ingredients
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:42:27,662 - ERROR - logger - log_error - Error: Index Check: family_messages check failed | Context: Details: No primary key index found for family_messages
+Error: Missing primary key index
+NoneType: None
+2024-10-30 02:42:27,664 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 02:42:29,625 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 639 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:42:29,627 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3505 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:42:29,628 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3481 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:42:29,630 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:42:29,631 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:42:29,632 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:42:29,633 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:42:29,634 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 02:42:29,636 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 02:42:29,638 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 02:42:29,691 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 02:42:56,258 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 02:42:56,259 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 02:42:56,260 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 02:42:56,261 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 02:42:56,261 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 02:42:56,262 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 02:42:56,262 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 02:42:56,263 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 02:42:56,263 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 02:42:56,264 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 02:42:56,264 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 02:42:56,265 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 02:42:56,265 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 02:42:56,265 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 02:42:56,266 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 02:42:56,266 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 02:42:57,268 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 02:42:57,272 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 02:42:58,687 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:42:58,689 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 02:42:58,690 - ERROR - logger - log_error - Error: Table Structure: notifications check failed | Context: Details: Structure issues found in notifications
+Error: Missing columns: read, id
+NoneType: None
+2024-10-30 02:42:58,692 - ERROR - logger - log_error - Error: Table Structure: recipe_ingredients check failed | Context: Details: Structure issues found in recipe_ingredients
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:42:58,693 - ERROR - logger - log_error - Error: Index Check: family_messages check failed | Context: Details: No primary key index found for family_messages
+Error: Missing primary key index
+NoneType: None
+2024-10-30 02:42:58,695 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 02:43:00,504 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 639 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:43:00,506 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3505 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:43:00,507 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3481 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:43:00,509 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:43:00,510 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:43:00,511 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:43:00,513 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:43:00,514 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 02:43:00,515 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 02:43:00,517 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 02:43:00,564 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 02:45:05,847 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 02:45:05,848 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 02:45:05,849 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 02:45:05,849 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 02:45:05,850 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 02:45:05,850 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 02:45:06,080 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 02:45:06,082 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 02:45:06,082 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 02:45:06,129 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 02:45:06,143 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 02:45:06,144 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 02:45:06,150 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 02:45:06,648 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 02:45:06,649 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 02:45:06,650 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 02:45:07,651 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 02:45:07,658 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 02:45:09,022 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:45:09,025 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 02:45:09,027 - ERROR - logger - log_error - Error: Table Structure: notifications check failed | Context: Details: Structure issues found in notifications
+Error: Missing columns: id, read
+NoneType: None
+2024-10-30 02:45:09,029 - ERROR - logger - log_error - Error: Table Structure: recipe_ingredients check failed | Context: Details: Structure issues found in recipe_ingredients
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:45:09,030 - ERROR - logger - log_error - Error: Index Check: family_messages check failed | Context: Details: No primary key index found for family_messages
+Error: Missing primary key index
+NoneType: None
+2024-10-30 02:45:09,032 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 02:45:11,017 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 639 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:11,019 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3505 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:11,021 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3481 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:11,022 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:11,023 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:11,024 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:11,026 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:11,027 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 02:45:11,028 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 02:45:11,030 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 02:45:11,082 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 02:45:21,158 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 02:45:21,158 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 02:45:21,159 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 02:45:21,159 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 02:45:21,160 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 02:45:21,160 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 02:45:21,160 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 02:45:21,161 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 02:45:21,161 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 02:45:21,161 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 02:45:21,161 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 02:45:21,162 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 02:45:21,162 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 02:45:21,163 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 02:45:21,163 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 02:45:21,164 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 02:45:22,165 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 02:45:22,169 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 02:45:23,538 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:45:23,540 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 02:45:23,542 - ERROR - logger - log_error - Error: Table Structure: notifications check failed | Context: Details: Structure issues found in notifications
+Error: Missing columns: id, read
+NoneType: None
+2024-10-30 02:45:23,543 - ERROR - logger - log_error - Error: Table Structure: recipe_ingredients check failed | Context: Details: Structure issues found in recipe_ingredients
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:45:23,545 - ERROR - logger - log_error - Error: Index Check: family_messages check failed | Context: Details: No primary key index found for family_messages
+Error: Missing primary key index
+NoneType: None
+2024-10-30 02:45:23,546 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 02:45:25,407 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 639 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:25,409 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3505 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:25,411 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3481 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:25,412 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:25,414 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:25,415 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:25,416 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:45:25,417 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 02:45:25,419 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 02:45:25,421 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 02:45:25,474 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 02:48:39,030 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 02:48:39,032 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 02:48:39,032 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 02:48:39,033 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 02:48:39,033 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 02:48:39,033 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 02:48:39,034 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 02:48:39,034 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 02:48:39,034 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 02:48:39,035 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 02:48:39,035 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 02:48:39,035 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 02:48:39,036 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 02:48:39,036 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 02:48:39,036 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 02:48:39,037 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 02:48:40,038 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 02:48:40,044 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 02:48:41,359 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:48:41,361 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 02:48:41,363 - ERROR - logger - log_error - Error: Table Structure: notifications check failed | Context: Details: Structure issues found in notifications
+Error: Missing columns: id, read
+NoneType: None
+2024-10-30 02:48:41,364 - ERROR - logger - log_error - Error: Table Structure: recipe_ingredients check failed | Context: Details: Structure issues found in recipe_ingredients
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:48:41,365 - ERROR - logger - log_error - Error: Index Check: family_messages check failed | Context: Details: No primary key index found for family_messages
+Error: Missing primary key index
+NoneType: None
+2024-10-30 02:48:41,367 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 02:48:43,220 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 639 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:48:43,223 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3505 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:48:43,224 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3481 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:48:43,225 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:48:43,227 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:48:43,228 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:48:43,229 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:48:43,230 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 02:48:43,232 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 02:48:43,234 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 02:48:43,282 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 02:56:46,498 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 02:56:46,499 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 02:56:46,500 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 02:56:46,500 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 02:56:46,501 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 02:56:46,502 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 02:56:46,502 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 02:56:46,502 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 02:56:46,503 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 02:56:46,503 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 02:56:46,504 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 02:56:46,504 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 02:56:46,505 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 02:56:46,505 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 02:56:46,505 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 02:56:46,506 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 02:56:47,508 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 02:56:47,512 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 02:56:48,879 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:56:48,882 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 02:56:48,884 - ERROR - logger - log_error - Error: Table Structure: notifications check failed | Context: Details: Structure issues found in notifications
+Error: Missing columns: id, read
+NoneType: None
+2024-10-30 02:56:48,885 - ERROR - logger - log_error - Error: Table Structure: recipe_ingredients check failed | Context: Details: Structure issues found in recipe_ingredients
+Error: Missing columns: id
+NoneType: None
+2024-10-30 02:56:48,887 - ERROR - logger - log_error - Error: Index Check: family_messages check failed | Context: Details: No primary key index found for family_messages
+Error: Missing primary key index
+NoneType: None
+2024-10-30 02:56:48,888 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 02:56:50,804 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 639 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:56:50,806 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3505 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:56:50,808 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3481 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:56:50,810 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:56:50,811 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:56:50,812 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:56:50,814 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 02:56:50,815 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 02:56:50,818 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 02:56:50,819 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 02:56:50,869 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 03:03:01,268 - INFO - logger - log_info - Cleared logs older than 7 days
+2024-10-30 03:03:18,887 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 03:03:18,888 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 03:03:18,888 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 03:03:18,889 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 03:03:18,889 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 03:03:18,890 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 03:03:18,891 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 03:03:18,891 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 03:03:18,891 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 03:03:18,892 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 03:03:18,893 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 03:03:18,893 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 03:03:18,894 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 03:03:18,894 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 03:03:18,894 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 03:03:18,895 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 03:03:19,897 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 03:03:19,902 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 03:03:21,212 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 03:03:21,215 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 03:03:21,217 - ERROR - logger - log_error - Error: Table Structure: notifications check failed | Context: Details: Structure issues found in notifications
+Error: Missing columns: id, read
+NoneType: None
+2024-10-30 03:03:21,219 - ERROR - logger - log_error - Error: Table Structure: recipe_ingredients check failed | Context: Details: Structure issues found in recipe_ingredients
+Error: Missing columns: id
+NoneType: None
+2024-10-30 03:03:21,221 - ERROR - logger - log_error - Error: Index Check: family_messages check failed | Context: Details: No primary key index found for family_messages
+Error: Missing primary key index
+NoneType: None
+2024-10-30 03:03:21,224 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 03:03:23,276 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 639 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:03:23,278 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3505 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:03:23,280 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3481 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:03:23,281 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:03:23,282 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:03:23,284 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:03:23,285 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:03:23,287 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 03:03:23,289 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 03:03:23,291 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 03:03:23,341 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 03:08:59,598 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 03:08:59,599 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 03:08:59,600 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 03:08:59,600 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 03:08:59,600 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 03:08:59,601 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 03:08:59,601 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 03:08:59,601 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 03:08:59,602 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 03:08:59,602 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 03:08:59,602 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 03:08:59,603 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 03:08:59,603 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 03:08:59,604 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 03:08:59,604 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 03:08:59,604 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 03:09:00,606 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 03:09:00,609 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 03:09:02,064 - ERROR - logger - log_error - Error: Table Structure: meal_plans check failed | Context: Details: Structure issues found in meal_plans
+Error: Missing columns: id
+NoneType: None
+2024-10-30 03:09:02,066 - ERROR - logger - log_error - Error: Table Existence: family_messages check failed | Context: Details: Table family_messages does not exist
+Error: Missing table
+NoneType: None
+2024-10-30 03:09:02,067 - ERROR - logger - log_error - Error: Table Structure: notifications check failed | Context: Details: Structure issues found in notifications
+Error: Missing columns: id, read
+NoneType: None
+2024-10-30 03:09:02,069 - ERROR - logger - log_error - Error: Table Structure: recipe_ingredients check failed | Context: Details: Structure issues found in recipe_ingredients
+Error: Missing columns: id
+NoneType: None
+2024-10-30 03:09:02,070 - ERROR - logger - log_error - Error: Index Check: family_messages check failed | Context: Details: No primary key index found for family_messages
+Error: Missing primary key index
+NoneType: None
+2024-10-30 03:09:02,071 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 03:09:03,988 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 639 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:09:03,990 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3505 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:09:03,991 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3481 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:09:03,993 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:09:03,994 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:09:03,995 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:09:03,996 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 03:09:03,998 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 03:09:03,999 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 03:09:04,001 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 03:09:04,050 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 03:11:52,976 - INFO - logger - log_info - Cleared logs older than 7 days
+2024-10-30 03:22:44,671 - INFO - logger - log_info - Starting application initialization
+2024-10-30 03:22:45,910 - INFO - logger - log_info - All tables created successfully
+2024-10-30 03:22:45,911 - INFO - logger - log_info - Database initialized successfully
+2024-10-30 03:22:46,253 - INFO - logger - log_info - All required tables exist
+2024-10-30 03:28:08,132 - INFO - logger - log_info - Starting application initialization
+2024-10-30 03:28:09,164 - INFO - logger - log_info - All tables created successfully
+2024-10-30 03:28:09,165 - INFO - logger - log_info - Database initialized successfully
+2024-10-30 03:28:09,519 - INFO - logger - log_info - All required tables exist
+2024-10-30 03:33:22,004 - INFO - logger - log_info - Starting application initialization
+2024-10-30 03:33:22,476 - INFO - logger - log_info - All tables created successfully
+2024-10-30 03:33:22,477 - INFO - logger - log_info - Database initialized successfully
+2024-10-30 03:33:22,810 - INFO - logger - log_info - All required tables exist
+2024-10-30 03:50:59,349 - INFO - logger - log_info - All tables created successfully
+2024-10-30 03:54:10,163 - INFO - logger - log_info - All tables created successfully
+2024-10-30 03:54:38,746 - INFO - logger - log_info - All tables created successfully
+2024-10-30 04:09:42,556 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 04:09:42,557 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 04:09:42,558 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 04:09:42,559 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 04:09:42,559 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 04:09:42,560 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 04:09:42,772 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 04:09:42,774 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 04:09:42,775 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 04:09:42,815 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 04:09:42,828 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 04:09:42,829 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 04:09:42,829 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 04:09:42,830 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 04:09:42,830 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 04:09:42,831 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 04:09:43,833 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 04:09:43,838 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 04:09:45,332 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 04:09:47,446 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 641 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:09:47,449 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3536 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:09:47,451 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3510 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:09:47,452 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:09:47,454 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:09:47,455 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:09:47,456 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:09:47,457 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 04:09:47,460 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 04:09:47,461 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 04:09:47,509 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 04:16:52,361 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 04:16:52,362 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 04:16:52,363 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 04:16:52,363 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 04:16:52,364 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 04:16:52,364 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 04:16:52,365 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 04:16:52,365 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 04:16:52,365 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 04:16:52,366 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 04:16:52,366 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 04:16:52,366 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 04:16:52,367 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 04:16:52,367 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 04:16:52,368 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 04:16:52,368 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 04:16:53,370 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 04:16:53,374 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 04:16:54,846 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 04:16:56,814 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 641 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:16:56,816 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3536 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:16:56,817 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3510 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:16:56,818 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:16:56,820 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:16:56,821 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:16:56,822 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:16:56,824 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 04:16:56,825 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 04:16:56,827 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 04:16:56,873 - WARNING - logger - log_warning - Warning: Some system checks failed
+2024-10-30 04:25:54,652 - INFO - logger - log_info - Starting comprehensive system diagnostics
+2024-10-30 04:25:54,653 - INFO - logger - log_info - Starting Module Dependencies check
+2024-10-30 04:25:54,655 - INFO - logger - log_info - Module streamlit version 1.39.0 is installed
+2024-10-30 04:25:54,655 - INFO - logger - log_info - Module psycopg2 version 2.9.10 is installed
+2024-10-30 04:25:54,656 - INFO - logger - log_info - Module psutil version 6.1.0 is installed
+2024-10-30 04:25:54,656 - INFO - logger - log_info - Module plotly version 5.24.1 is installed
+2024-10-30 04:25:54,869 - INFO - logger - log_info - Module pywebpush version 2.0.1 is installed
+2024-10-30 04:25:54,871 - INFO - logger - log_info - Module websockets version 13.1 is installed
+2024-10-30 04:25:54,871 - INFO - logger - log_info - Module asyncio version 3.4.3 is installed
+2024-10-30 04:25:54,913 - INFO - logger - log_info - Module cssutils version 2.11.1 is installed
+2024-10-30 04:25:54,924 - INFO - logger - log_info - Module jsbeautifier version 1.15.1 is installed
+2024-10-30 04:25:54,925 - INFO - logger - log_info - Module pytz version 2024.2 is installed
+2024-10-30 04:25:54,931 - INFO - logger - log_info - Module dateutil version 2.9.0.post0 is installed
+2024-10-30 04:25:55,427 - INFO - logger - log_info - Module pandas version 2.2.3 is installed
+2024-10-30 04:25:55,427 - INFO - logger - log_info - Module Dependencies check passed
+2024-10-30 04:25:55,428 - INFO - logger - log_info - Starting System Resources check
+2024-10-30 04:25:56,430 - INFO - logger - log_info - Starting File Permissions check
+2024-10-30 04:25:56,438 - INFO - logger - log_info - Starting Database Structure check
+2024-10-30 04:25:57,902 - INFO - logger - log_info - Starting Input Validation check
+2024-10-30 04:25:59,928 - ERROR - logger - log_error - Error: Numeric Validation: pg_type.typtypmod check failed | Context: Details: Found 641 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:25:59,930 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.attcacheoff check failed | Context: Details: Found 3536 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:25:59,932 - ERROR - logger - log_error - Error: Numeric Validation: pg_attribute.atttypmod check failed | Context: Details: Found 3510 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:25:59,933 - ERROR - logger - log_error - Error: Numeric Validation: pg_database.datconnlimit check failed | Context: Details: Found 4 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:25:59,935 - ERROR - logger - log_error - Error: Numeric Validation: pg_authid.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:25:59,937 - ERROR - logger - log_error - Error: Numeric Validation: pg_collation.collencoding check failed | Context: Details: Found 787 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:25:59,938 - ERROR - logger - log_error - Error: Numeric Validation: pg_roles.rolconnlimit check failed | Context: Details: Found 17 out-of-range values
+Error: Invalid numeric values detected
+NoneType: None
+2024-10-30 04:25:59,941 - ERROR - logger - log_error - Error: Input Validation check failed | Context: Details: Error during input validation
+Error: permission denied for function pg_show_all_file_settings
+NoneType: None
+2024-10-30 04:25:59,943 - INFO - logger - log_info - Starting Type Consistency check
+2024-10-30 04:25:59,944 - ERROR - logger - log_error - Error: Log Format: family_hub_20241030.log check failed | Context: Details: Invalid log format detected
+Error: Malformed log entry found
+NoneType: None
+2024-10-30 04:26:00,001 - WARNING - logger - log_warning - Warning: Some system checks failed

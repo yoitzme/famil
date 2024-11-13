@@ -1,10 +1,9 @@
 import streamlit as st
-import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 from utils.database import get_db_connection
-from utils.helpers import configure_page, format_date
-
-configure_page()
+from utils.helpers import format_date
+from psycopg2.extras import RealDictCursor
+from utils.header import display_header, display_page_title
 
 def add_sample_school_events():
     """Add sample school events to the database."""
@@ -52,7 +51,8 @@ def get_event_color(event_type):
     return colors.get(event_type, "#FFFFFF")
 
 def main():
-    st.title("School Events 🏫")
+    display_header()
+    display_page_title("School Events 🎓")
     
     # Add sample data button
     if st.sidebar.button("Add Sample School Events"):

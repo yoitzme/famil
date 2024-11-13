@@ -1,3 +1,107 @@
+import streamlit as st
+from utils.context import require_context
+
+@require_context
+def get_mobile_styles():
+    """Return mobile-optimized styles."""
+    return """
+        <style>
+            /* Mobile-friendly cards */
+            .dashboard-card {
+                background: rgba(255,255,255,0.05);
+                border-radius: 10px;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            
+            /* Card content spacing */
+            .card-content {
+                margin-top: 1rem;
+                padding: 0.5rem;
+            }
+            
+            /* Card header styling */
+            .card-header {
+                font-size: 1.2rem;
+                font-weight: bold;
+                padding: 0.5rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                margin-bottom: 0.5rem;
+            }
+            
+            /* Mobile form styling */
+            .mobile-form {
+                padding: 1rem;
+                background: rgba(255,255,255,0.05);
+                border-radius: 10px;
+                margin-bottom: 1rem;
+            }
+            
+            /* List item styling */
+            .list-item {
+                padding: 0.8rem;
+                background: rgba(255,255,255,0.05);
+                border-radius: 5px;
+                margin-bottom: 0.5rem;
+            }
+            
+            /* Responsive text */
+            @media (max-width: 768px) {
+                .stMarkdown {
+                    font-size: 0.9rem;
+                }
+                
+                .card-header {
+                    font-size: 1rem;
+                }
+            }
+        </style>
+    """
+
+@require_context
+def get_base_styles():
+    """Get base application styles."""
+    return """
+    <style>
+        /* Base Theme */
+        :root {
+            --primary-color: #FF4B4B;
+            --secondary-color: #FF8F00;
+            --bg-primary: #0E1117;
+            --bg-secondary: #262730;
+            --text-primary: #FFFFFF;
+            --text-secondary: #9CA3AF;
+        }
+
+        /* Layout */
+        .main .block-container {
+            padding: 2rem 1rem !important;
+            max-width: none !important;
+        }
+
+        /* Components */
+        .stButton button {
+            width: 100%;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            font-weight: 500;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+    """
+
 def get_consolidated_styles():
     """Consolidate all styles to prevent conflicts and duplicates."""
     return """
@@ -55,93 +159,6 @@ def get_consolidated_styles():
             
             body .stTabs [data-baseweb="tab"] {
                 padding: 0.5rem;
-            }
-        }
-    </style>
-    """
-
-def get_base_styles():
-    """Get base application styles."""
-    return """
-    <style>
-        /* Base Theme */
-        :root {
-            --primary-color: #FF4B4B;
-            --secondary-color: #FF8F00;
-            --bg-primary: #0E1117;
-            --bg-secondary: #262730;
-            --text-primary: #FFFFFF;
-            --text-secondary: #9CA3AF;
-        }
-
-        /* Layout */
-        .main .block-container {
-            padding: 2rem 1rem !important;
-            max-width: none !important;
-        }
-
-        /* Components */
-        .stButton button {
-            width: 100%;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            font-weight: 500;
-        }
-
-        /* Cards */
-        .card {
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            padding: 1rem;
-            margin: 1rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-    </style>
-    """
-
-def get_mobile_styles():
-    """Get mobile-specific styles."""
-    return """
-    <style>
-        /* Mobile Form */
-        body #root .stApp .mobile-form {
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-
-        /* Mobile List */
-        body #root .stApp .mobile-friendly-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        body #root .stApp .list-item {
-            background: var(--bg-secondary);
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        /* Mobile Navigation */
-        @media (max-width: 768px) {
-            body #root .stApp .stTabs [data-baseweb="tab-list"] {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                scrollbar-width: none;
-            }
-
-            body #root .stApp .stTabs [data-baseweb="tab-list"]::-webkit-scrollbar {
-                display: none;
-            }
-
-            body #root .stApp .stTabs [data-baseweb="tab"] {
-                white-space: nowrap;
             }
         }
     </style>

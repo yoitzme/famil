@@ -1,10 +1,9 @@
 import streamlit as st
 from datetime import datetime, timedelta
 from utils.database import get_db_connection
-from utils.helpers import configure_page, format_date
+from utils.helpers import format_date
 from psycopg2.extras import RealDictCursor
-
-configure_page()
+from utils.header import display_header, display_page_title
 
 # Add responsive styles
 st.markdown("""
@@ -258,7 +257,8 @@ def display_meal_plan(date, meal_type, recipe_options):
         save_meal_plan(date, meal_type, recipe_id, notes)
 
 def main():
-    st.title("Meal Planner 🍳")
+    display_header()
+    display_page_title("Meal Planner 🍽️")
     
     # Initialize session state
     if 'num_ingredients' not in st.session_state:

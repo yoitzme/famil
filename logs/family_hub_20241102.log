@@ -1,0 +1,143 @@
+2024-11-02 00:05:42,313 - INFO - logger - log_info - All tables created successfully
+2024-11-02 01:53:21,416 - INFO - logger - log_info - All tables created successfully
+2024-11-02 02:03:19,919 - INFO - logger - log_info - All tables created successfully
+2024-11-02 02:03:28,143 - INFO - logger - log_info - All tables created successfully
+2024-11-02 02:03:32,922 - INFO - logger - log_info - All tables created successfully
+2024-11-02 02:03:43,307 - INFO - logger - log_info - Starting application initialization
+2024-11-02 02:03:43,753 - INFO - logger - log_info - All tables created successfully
+2024-11-02 02:03:43,756 - INFO - logger - log_info - Database initialized successfully
+2024-11-02 02:03:44,097 - INFO - logger - log_info - All required tables exist
+2024-11-02 02:03:46,632 - INFO - logger - log_info - Starting application initialization
+2024-11-02 02:03:47,059 - INFO - logger - log_info - All tables created successfully
+2024-11-02 02:03:47,060 - INFO - logger - log_info - Database initialized successfully
+2024-11-02 02:03:47,398 - INFO - logger - log_info - All required tables exist
+2024-11-02 02:05:25,966 - INFO - logger - log_info - Starting application initialization
+2024-11-02 02:05:26,402 - INFO - logger - log_info - All tables created successfully
+2024-11-02 02:05:26,403 - INFO - logger - log_info - Database initialized successfully
+2024-11-02 02:05:26,705 - INFO - logger - log_info - All required tables exist
+2024-11-02 02:56:09,825 - INFO - logger - log_info - All tables created successfully
+2024-11-02 02:56:25,418 - INFO - logger - log_info - All tables created successfully
+2024-11-02 02:56:38,927 - INFO - logger - log_info - All tables created successfully
+2024-11-02 03:17:32,775 - INFO - logger - log_info - All tables created successfully
+2024-11-02 03:28:59,884 - INFO - logger - log_info - All tables created successfully
+2024-11-02 03:30:16,833 - INFO - logger - log_info - All tables created successfully
+2024-11-02 03:43:36,296 - INFO - logger - log_info - All tables created successfully
+2024-11-02 03:47:19,822 - INFO - logger - log_info - All tables created successfully
+2024-11-02 03:48:26,765 - INFO - logger - log_info - All tables created successfully
+2024-11-02 03:49:39,951 - INFO - logger - log_info - All tables created successfully
+2024-11-02 03:56:36,645 - INFO - logger - log_info - All tables created successfully
+2024-11-02 04:18:34,243 - INFO - logger - log_info - All tables created successfully
+2024-11-02 04:19:15,827 - INFO - logger - log_info - All tables created successfully
+2024-11-02 04:24:21,088 - INFO - logger - log_info - All tables created successfully
+2024-11-02 04:24:24,889 - INFO - logger - log_info - All tables created successfully
+2024-11-02 04:24:56,479 - INFO - logger - log_info - All tables created successfully
+2024-11-02 04:24:57,194 - INFO - logger - log_info - All tables created successfully
+2024-11-02 04:52:40,214 - INFO - logger - log_info - All tables created successfully
+2024-11-02 04:52:40,217 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 05:09:07,380 - INFO - logger - log_info - All tables created successfully
+2024-11-02 05:09:07,383 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 05:09:48,617 - INFO - logger - log_info - All tables created successfully
+2024-11-02 05:09:48,620 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 05:14:29,912 - INFO - logger - log_info - All tables created successfully
+2024-11-02 05:14:29,914 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 05:30:19,362 - INFO - logger - log_info - All tables created successfully
+2024-11-02 05:30:19,365 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 21:42:07,681 - INFO - logger - log_info - All tables created successfully
+2024-11-02 21:42:07,690 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 21:45:27,587 - INFO - logger - log_info - All tables created successfully
+2024-11-02 21:45:27,590 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 21:46:24,264 - INFO - logger - log_info - All tables created successfully
+2024-11-02 21:46:24,267 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 21:46:34,435 - INFO - logger - log_info - All tables created successfully
+2024-11-02 21:46:34,438 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 21:46:59,157 - INFO - logger - log_info - All tables created successfully
+2024-11-02 21:46:59,159 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 21:47:52,546 - INFO - logger - log_info - All tables created successfully
+2024-11-02 21:47:52,549 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 21:48:01,158 - INFO - logger - log_info - All tables created successfully
+2024-11-02 21:48:01,161 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 21:48:49,546 - INFO - logger - log_info - All tables created successfully
+2024-11-02 21:48:49,549 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 21:48:53,138 - INFO - logger - log_info - All tables created successfully
+2024-11-02 21:48:53,142 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 21:49:04,219 - INFO - logger - log_info - All tables created successfully
+2024-11-02 21:49:04,222 - ERROR - logger - log_error - Error: Application error: name 'calendar_view' is not defined
+Traceback (most recent call last):
+  File "/home/runner/workspace/main.py", line 93, in main
+    with tabs[2]: calendar_view()
+                  ^^^^^^^^^^^^^
+NameError: name 'calendar_view' is not defined
+2024-11-02 21:50:32,273 - INFO - logger - log_info - All tables created successfully
+2024-11-02 22:45:15,438 - INFO - logger - log_info - All tables created successfully
+2024-11-02 22:56:40,790 - INFO - logger - log_info - All tables created successfully
+2024-11-02 22:56:45,019 - INFO - logger - log_info - All tables created successfully

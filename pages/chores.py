@@ -1,10 +1,9 @@
 import streamlit as st
-import pandas as pd
 from datetime import datetime, timedelta
 from utils.database import get_db_connection
-from utils.helpers import configure_page, format_date
-
-configure_page()
+from utils.helpers import format_date
+from psycopg2.extras import RealDictCursor
+from utils.header import display_header, display_page_title
 
 def add_sample_chores():
     """Add sample chores data to the database."""
@@ -38,16 +37,8 @@ def add_sample_chores():
             conn.close()
 
 def main():
-    st.markdown("""
-        <style>
-            /* Show sidebar navigation */
-            section[data-testid="stSidebarNav"] {
-                display: block !important;
-                width: auto !important;
-            }
-        </style>
-    """, unsafe_allow_html=True)
-    st.title("Family Chores ✨")
+    display_header()
+    display_page_title("Family Chores ✨")
     
     # Add sample data button
     if st.sidebar.button("Add Sample Chores"):

@@ -1,0 +1,9 @@
+{
+    "theme": "light",
+    "font_size": 16,
+    "compact_mode": true,
+    "email_notifications": false,
+    "email_address": "",
+    "push_notifications": false,
+    "notification_sound": false
+}
